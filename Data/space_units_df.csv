@@ -30,8 +30,8 @@ Matriarch,The Naalu Collective,"During an invasion in this system, you may commi
 Memoria,The Nomad,You may treat this unit as if it were adjacent to systems that contain one or more of your mechs,Anti-Fighter Barrage 8 (x3),True,8,7 (x2)^,7,2,1^,3^,Flagship
 Memoria II,The Nomad,You may treat this unit as if it were adjacent to systems that contain one or more of your mechs,Anti-Fighter Barrage 5 (x3),True,8,5 (x2),5,2,2,6,Flagship
 Ouranos,The Titans of Ul,"DEPLOY: After you activate a system that contains 1 or more of your PDS, you may replace 1 of those PDS with this unit",,True,8,7 (x2),7,2,1,3,Flagship
-Prototype War Sun I,The Embers of Muaat,Other players' units in this system lose their Planetary Shield ability,Bombardment 3 (x3),True,12^,3 (x3),3,3,1^,6,War_Sun
-Prototype War Sun II,The Embers of Muaat,Other players' units in this system lose their Planetary Shield ability,Bombardment 3 (x3),True,10,3 (x3),3,3,3,6,War_Sun
+Prototype War Sun I,The Embers of Muaat,,Other players' units in this system lose their Planetary Shield ability & Bombardment 3 (x3),True,12^,3 (x3),3,3,1^,6,War_Sun
+Prototype War Sun II,The Embers of Muaat,,Other players' units in this system lose their Planetary Shield ability & Bombardment 3 (x3),True,10,3 (x3),3,3,3,6,War_Sun
 Quetzecoatl,The Argent Flight,Other players cannot use SPACE CANNON against your ships in this system,,True,8,7 (x2),7,2,1,3,Flagship
 Salai Sai Corian,The Winnu,"When this unit makes a combat roll, it rolls a number of dice equal to the number of your opponent's non-fighter ships in this system.",,True,8,7,7,1,1,3,Flagship
 Saturn Engine I,The Titans of Ul,,,False,2,7^,7,1,2^,1^,Cruiser
@@ -46,7 +46,7 @@ The Inferno,The Embers of Muaat,ACTION: Spend 1 token from your strategy pool to
 The Terror Between,The Vuil'Raith Cabal,"Capture all other non-structure units that are destroyed in this unit's system, including your own",Bombardment 5,True,8,5 (x2),5,2,1,3,Flagship
 Van Hauge,The Yin Brotherhood,"When this ship is destroyed, destroy all ships in this system.",,True,8,9 (x2),9,2,1,3,Flagship
 Visz el Vir,The Naaz-Rokha Alliance,Your mechs in this system roll 1 additional die during combat,,True,8,9 (x2),9,2,1,4,Flagship
-War Sun,Common Unit,Other players' units in this system lose their Planetary Shield ability,Bombardment 3 (x3),True,12,3 (x3),3,3,2,6,War_Sun
+War Sun,Common Unit,,Other players' units in this system lose their Planetary Shield ability & Bombardment 3 (x3),True,12,3 (x3),3,3,2,6,War_Sun
 Wrath of Kenara,The Emirates of Hacan,"After you roll a die during space combat in this system, you may spend 1 trade good to apply +1 to the result.",,True,8,7 (x2),7,2,1,3,Flagship
 Y'sia Y'ssrila,The Yssaril Tribes,This ship can move through systems that contain other player's ships.,,True,8,5 (x2),5,2,2,3,Flagship
 [0.0.1],The L1Z1X Mindnet,"During a space combat, hits produced by this ship and by your dreadnoughts in this system must be assigned to non-fighter ships if able.",,True,8,5 (x2),5,2,1,5,Flagship
