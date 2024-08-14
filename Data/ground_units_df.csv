@@ -1,4 +1,4 @@
-Name,Cost,Combat,Combat_Value,Shots,Ability,Has_Sustain_Damage,Unit Type
+Unit_Name,Cost,Combat,Combat_Value,Shots,Ability,Has_Sustain_Damage,Unit_Type
 Infantry,1 (x2),8^,8,1,,False,Infantry
 Infantry II,1 (x2),7,7,1,"After this unit is destroyed, roll 1 die. If the result is 6 or greater, place the unit on this card. At the start of your next turn, place each unit that is on this card on a planet you control in your home system.",False,Infantry
 Spec Ops I,1 (x2),7^,7,1,,False,Infantry

@@ -1,52 +1,52 @@
-Unit_Name,Faction_Name,Faction_Abilities,Standard_Abilities,Has_Sustain_Damage,Cost,Combat,Combat_Value,Shots,Move,Capacity,Unit_Type,Name,Ability,Unit Type
-,,,,False,1,7,7,1,2,1,,Strike Wing Alpha II,"Anti-Fighter Barrage 6 (x3) When this unit uses ANTI-FIGHTER BARRAGE, each result of 9 or 10 also destroys 1 of your opponents infantry in the space area of the active system",Destroyer
-,,,,False,1,8,8,1,2,0,,Destroyer II,Anti-Fighter Barrage 6 (x3),Destroyer
-,,,,False,1,8^,8,1,2,1,,Strike Wing Alpha I,Anti-Fighter Barrage 9 (x2),Destroyer
-,,,,False,1,9^,9,1,2,0,,Destroyer,Anti-Fighter Barrage 9 (x2),Destroyer
-,,,,False,1 (x2),7,7,1,2,0,,Hybrid Crystal Fighter II,This unit may move without being transported. Each fighter in excess of your ships' capacity counts as 1/2 of a ship against your fleet pool.,Fighter
-,,,,False,1 (x2),8,8,1,2,0,,Fighter II,This unit may move without being transported. Fighters in excess of your ships' capacity count against your fleet pool,Fighter
-,,,,False,1 (x2),8^,8,1,-^,0,,Hybrid Crystal Fighter,,Fighter
-,,,,False,1 (x2),9^,9,1,-^,0,,Fighter,,Fighter
-,,,,False,2,6,6,1,3,1,,Cruiser II,,Cruiser
-,,,,False,2,7^,7,1,2^,-^,,Cruiser,,Cruiser
-,,,,False,2,7^,7,1,2^,1^,,Saturn Engine I,,Cruiser
-,,,,False,3,9,9,1,1^,4^,,Carrier,,Carrier
-,,,,False,3,9,9,1,1^,6^,,Advanced Carrier,,Carrier
-,,,,False,3,9,9,1,2,6,,Carrier II,,Carrier
-,,,,True,10,3 (x3),3,3,3,6,,Prototype War Sun II,Other players' units in this system lose their Planetary Shield ability Sustain Damage Bombardment 3 (x3),War_Sun
-,,,,True,12,3 (x3),3,3,2,6,,War Sun,Other players' units in this system lose their Planetary Shield ability Sustain Damage Bombardment 3 (x3),War_Sun
-,,,,True,12^,3 (x3),3,3,1^,6,,Prototype War Sun I,Other players' units in this system lose their Planetary Shield ability Sustain Damage Bombardment 3 (x3),War_Sun
-,,,,True,2,6,6,1,3,2,,Saturn Engine II,Sustain Damage,Cruiser
-,,,,True,3,9,9,1,2,8,,Advanced Carrier II,Sustain Damage,Carrier
-,,,,True,4,4,4,1,2,2,,Super-Dreadnought II,"""Direct Hit"" cards are no longer effective against this type of ship. Sustain Damage Bombardment 4",Dreadnought
-,,,,True,4,5,5,1,1^,1,,Dreadnought,Sustain Damage Bombardment 5,Dreadnought
-,,,,True,4,5,5,1,1^,1,,Exotrireme,Sustain Damage Bombardment 4 (x2),Dreadnought
-,,,,True,4,5,5,1,2,1,,Dreadnought II,"""Direct Hit"" cards are no longer effective against this type of ship. Sustain Damage Bombardment 5",Dreadnought
-,,,,True,4,5,5,1,2,1,,Exotrireme II,"After a round of space combat, you may destroy this unit to destroy up to 2 ships in this system. ""Direct Hit"" cards are no longer effective against this type of ship. Sustain Damage Bombardment 4 (x2)",Dreadnought
-,,,,True,4,5^,5,1,1^,2,,Super-Dreadnought,Sustain Damage Bombardment 5,Dreadnought
-Hil Colish,The Ghosts of Creuss,"This ship's system contains a delta wormhole & During movement, this ship may move before or after your other ships",,True,8,5,5,1,1,3,Flagship,,,
-Genesis,The Federation of Sol,"At the end of the status phase, place 1 infantry from your reinforcements in this system's space area.",,True,8,5 (x2),5,2,1,12,Flagship,,,
-Arc Secundus,The Barony of Letnev,"Other players' units in this system lose PLANETARY SHIELD & At the start of each space combat round, repair this ship",Bombardment 5 (x3),True,8,5 (x2),5,2,1,3,Flagship,,,
-Son of Ragh,The Clan of Saar,,Anti-Fighter Barrage 6 (x4),True,8,5 (x2),5,2,1,3,Flagship,,,
-The Inferno,The Embers of Muaat,ACTION: Spend 1 token from your strategy pool to place 1 cruiser in this unit's system.,,True,8,5 (x2),5,2,1,3,Flagship,,,
-Dynamo,The Empyrean,"After any player's unit in this system or an adjacent system uses SUSTAIN DAMAGE, you may spend 2 influence to repair that unit.",,True,8,5 (x2),5,2,1,3,Flagship,,,
-Arvicon Rex,The Mahact Gene Sorcerers,"During combat against an opponent whose command token is not in your fleet pool, apply +2 to the results of this unit's combat rolls",,True,8,5 (x2),5,2,1,3,Flagship,,,
-The Terror Between,The Vuil'Raith Cabal,"Capture all other non-structure units that are destroyed in this unit's system, including your own",Bombardment 5,True,8,5 (x2),5,2,1,3,Flagship,,,
-[0.0.1],The L1Z1X Mindnet,"During a space combat, hits produced by this ship and by your dreadnoughts in this system must be assigned to non-fighter ships if able.",,True,8,5 (x2),5,2,1,5,Flagship,,,
-Y'sia Y'ssrila,The Yssaril Tribes,This ship can move through systems that contain other player's ships.,,True,8,5 (x2),5,2,2,3,Flagship,,,
-Memoria II,The Nomad,You may treat this unit as if it were adjacent to systems that contain one or more of your mechs,Anti-Fighter Barrage 5 (x3),True,8,5 (x2),5,2,2,6,Flagship,,,
-C'Morran N'orr,Sardakk N'orr,Apply +1 to the result of each of your other ship's combat rolls in this system.,,True,8,6 (x2),6,2,1,3,Flagship,,,
-J.N.S. Hylarim,The Universities of Jol-Nar,"When making a combat roll for this ship, each result of a 9 or 10, before applying modifiers, produces 2 additional hits.",,True,8,6 (x2),6,2,1,3,Flagship,,,
-Salai Sai Corian,The Winnu,"When this unit makes a combat roll, it rolls a number of dice equal to the number of your opponent's non-fighter ships in this system.",,True,8,7,7,1,1,3,Flagship,,,
-Quetzecoatl,The Argent Flight,Other players cannot use SPACE CANNON against your ships in this system,,True,8,7 (x2),7,2,1,3,Flagship,,,
-Wrath of Kenara,The Emirates of Hacan,"After you roll a die during space combat in this system, you may spend 1 trade good to apply +1 to the result.",,True,8,7 (x2),7,2,1,3,Flagship,,,
-Fourth Moon,The Mentak Coalition,Other players' ships in this system cannot use SUSTAIN DAMAGE,,True,8,7 (x2),7,2,1,3,Flagship,,,
-Ouranos,The Titans of Ul,"DEPLOY: After you activate a system that contains 1 or more of your PDS, you may replace 1 of those PDS with this unit",,True,8,7 (x2),7,2,1,3,Flagship,,,
-Loncarra Ssodu,The Xxcha Kingdom,You may use this unit's SPACE CANNON against ships that are in adjacent systems.,Space Cannon 5 (x3),True,8,7 (x2),7,2,1,3,Flagship,,,
-Duha Menaimon,The Arborec,"After you activate this system, you may produce up to 5 units in this system.",,True,8,7 (x2),7,2,1,5,Flagship,,,
-Artemiris,The Council Keleres,Other players must spend 2 influence to activate the system that contains this ship.,,True,8,7 (x2),7,2,1,6,Flagship,,,
-Memoria,The Nomad,You may treat this unit as if it were adjacent to systems that contain one or more of your mechs,Anti-Fighter Barrage 8 (x3),True,8,7 (x2)^,7,2,1^,3^,Flagship,,,
-The Alastor,The Nekro Virus,"At the start of a space combat, choose any number of your ground forces in this system to participate in that combat as if they were ships.",,True,8,9 (x2),9,2,1,3,Flagship,,,
-Van Hauge,The Yin Brotherhood,"When this ship is destroyed, destroy all ships in this system.",,True,8,9 (x2),9,2,1,3,Flagship,,,
-Visz el Vir,The Naaz-Rokha Alliance,Your mechs in this system roll 1 additional die during combat,,True,8,9 (x2),9,2,1,4,Flagship,,,
-Matriarch,The Naalu Collective,"During an invasion in this system, you may commit fighters to planets as if they were ground forces. When combat ends, return those units to the space area.",,True,8,9 (x2),9,2,1,6,Flagship,,,
+Unit_Name,Faction_Name,Unit_Abilities,Standard_Abilities,Has_Sustain_Damage,Cost,Combat,Combat_Value,Shots,Move,Capacity,Unit_Type
+Advanced Carrier,The Federation of Sol,,,False,3,9,9,1,1^,6^,Carrier
+Advanced Carrier II,The Federation of Sol,,,True,3,9,9,1,2,8,Carrier
+Arc Secundus,The Barony of Letnev,"Other players' units in this system lose PLANETARY SHIELD & At the start of each space combat round, repair this ship",Bombardment 5 (x3),True,8,5 (x2),5,2,1,3,Flagship
+Artemiris,The Council Keleres,Other players must spend 2 influence to activate the system that contains this ship.,,True,8,7 (x2),7,2,1,6,Flagship
+Arvicon Rex,The Mahact Gene Sorcerers,"During combat against an opponent whose command token is not in your fleet pool, apply +2 to the results of this unit's combat rolls",,True,8,5 (x2),5,2,1,3,Flagship
+C'Morran N'orr,Sardakk N'orr,Apply +1 to the result of each of your other ship's combat rolls in this system.,,True,8,6 (x2),6,2,1,3,Flagship
+Carrier,Common Unit,,,False,3,9,9,1,1^,4^,Carrier
+Carrier II,Common Unit,,,False,3,9,9,1,2,6,Carrier
+Cruiser,Common Unit,,,False,2,7^,7,1,2^,-^,Cruiser
+Cruiser II,Common Unit,,,False,2,6,6,1,3,1,Cruiser
+Destroyer,Common Unit,,Anti-Fighter Barrage 9 (x2),False,1,9^,9,1,2,0,Destroyer
+Destroyer II,Common Unit,,Anti-Fighter Barrage 6 (x3),False,1,8,8,1,2,0,Destroyer
+Dreadnought,Common Unit,,Bombardment 5,True,4,5,5,1,1^,1,Dreadnought
+Dreadnought II,Common Unit,"""Direct Hit"" cards are no longer effective against this type of ship.",Bombardment 5,True,4,5,5,1,2,1,Dreadnought
+Duha Menaimon,The Arborec,"After you activate this system, you may produce up to 5 units in this system.",,True,8,7 (x2),7,2,1,5,Flagship
+Dynamo,The Empyrean,"After any player's unit in this system or an adjacent system uses SUSTAIN DAMAGE, you may spend 2 influence to repair that unit.",,True,8,5 (x2),5,2,1,3,Flagship
+Exotrireme,Sardakk N'orr,,Bombardment 4 (x2),True,4,5,5,1,1^,1,Dreadnought
+Exotrireme II,Sardakk N'orr,"After a round of space combat, you may destroy this unit to destroy up to 2 ships in this system. & ""Direct Hit"" cards are no longer effective against this type of ship.",Bombardment 4 (x2),True,4,5,5,1,2,1,Dreadnought
+Fighter,Common Unit,,,False,1 (x2),9^,9,1,-^,0,Fighter
+Fighter II,Common Unit,This unit may move without being transported. & Fighters in excess of your ships' capacity count against your fleet pool,,False,1 (x2),8,8,1,2,0,Fighter
+Fourth Moon,The Mentak Coalition,Other players' ships in this system cannot use SUSTAIN DAMAGE,,True,8,7 (x2),7,2,1,3,Flagship
+Genesis,The Federation of Sol,"At the end of the status phase, place 1 infantry from your reinforcements in this system's space area.",,True,8,5 (x2),5,2,1,12,Flagship
+Hil Colish,The Ghosts of Creuss,"This ship's system contains a delta wormhole & During movement, this ship may move before or after your other ships",,True,8,5,5,1,1,3,Flagship
+Hybrid Crystal Fighter,The Naalu Collective,,,False,1 (x2),8^,8,1,-^,0,Fighter
+Hybrid Crystal Fighter II,The Naalu Collective,This unit may move without being transported.  Each fighter in excess of your ships' capacity counts as 1/2 of a ship against your fleet pool,,False,1 (x2),7,7,1,2,0,Fighter
+J.N.S. Hylarim,The Universities of Jol-Nar,"When making a combat roll for this ship, each result of a 9 or 10, before applying modifiers, produces 2 additional hits.",,True,8,6 (x2),6,2,1,3,Flagship
+Loncarra Ssodu,The Xxcha Kingdom,You may use this unit's SPACE CANNON against ships that are in adjacent systems.,Space Cannon 5 (x3),True,8,7 (x2),7,2,1,3,Flagship
+Matriarch,The Naalu Collective,"During an invasion in this system, you may commit fighters to planets as if they were ground forces. When combat ends, return those units to the space area.",,True,8,9 (x2),9,2,1,6,Flagship
+Memoria,The Nomad,You may treat this unit as if it were adjacent to systems that contain one or more of your mechs,Anti-Fighter Barrage 8 (x3),True,8,7 (x2)^,7,2,1^,3^,Flagship
+Memoria II,The Nomad,You may treat this unit as if it were adjacent to systems that contain one or more of your mechs,Anti-Fighter Barrage 5 (x3),True,8,5 (x2),5,2,2,6,Flagship
+Ouranos,The Titans of Ul,"DEPLOY: After you activate a system that contains 1 or more of your PDS, you may replace 1 of those PDS with this unit",,True,8,7 (x2),7,2,1,3,Flagship
+Prototype War Sun I,The Embers of Muaat,Other players' units in this system lose their Planetary Shield ability,Bombardment 3 (x3),True,12^,3 (x3),3,3,1^,6,War_Sun
+Prototype War Sun II,The Embers of Muaat,Other players' units in this system lose their Planetary Shield ability,Bombardment 3 (x3),True,10,3 (x3),3,3,3,6,War_Sun
+Quetzecoatl,The Argent Flight,Other players cannot use SPACE CANNON against your ships in this system,,True,8,7 (x2),7,2,1,3,Flagship
+Salai Sai Corian,The Winnu,"When this unit makes a combat roll, it rolls a number of dice equal to the number of your opponent's non-fighter ships in this system.",,True,8,7,7,1,1,3,Flagship
+Saturn Engine I,The Titans of Ul,,,False,2,7^,7,1,2^,1^,Cruiser
+Saturn Engine II,The Titans of Ul,,,True,2,6,6,1,3,2,Cruiser
+Son of Ragh,The Clan of Saar,,Anti-Fighter Barrage 6 (x4),True,8,5 (x2),5,2,1,3,Flagship
+Strike Wing Alpha I,The Argent Flight,,Anti-Fighter Barrage 9 (x2),False,1,8^,8,1,2,1,Destroyer
+Strike Wing Alpha II,The Argent Flight,"When this unit uses ANTI-FIGHTER BARRAGE, each result of 9 or 10 also destroys 1 of your opponents infantry in the space area of the active system",Anti-Fighter Barrage 6 (x3),False,1,7,7,1,2,1,Destroyer
+Super-Dreadnought,The L1Z1X Mindnet,,Bombardment 5,True,4,5^,5,1,1^,2,Dreadnought
+Super-Dreadnought II,The L1Z1X Mindnet,"""Direct Hit"" cards are no longer effective against this type of ship.",Bombardment 4,True,4,4,4,1,2,2,Dreadnought
+The Alastor,The Nekro Virus,"At the start of a space combat, choose any number of your ground forces in this system to participate in that combat as if they were ships.",,True,8,9 (x2),9,2,1,3,Flagship
+The Inferno,The Embers of Muaat,ACTION: Spend 1 token from your strategy pool to place 1 cruiser in this unit's system.,,True,8,5 (x2),5,2,1,3,Flagship
+The Terror Between,The Vuil'Raith Cabal,"Capture all other non-structure units that are destroyed in this unit's system, including your own",Bombardment 5,True,8,5 (x2),5,2,1,3,Flagship
+Van Hauge,The Yin Brotherhood,"When this ship is destroyed, destroy all ships in this system.",,True,8,9 (x2),9,2,1,3,Flagship
+Visz el Vir,The Naaz-Rokha Alliance,Your mechs in this system roll 1 additional die during combat,,True,8,9 (x2),9,2,1,4,Flagship
+War Sun,Common Unit,Other players' units in this system lose their Planetary Shield ability,Bombardment 3 (x3),True,12,3 (x3),3,3,2,6,War_Sun
+Wrath of Kenara,The Emirates of Hacan,"After you roll a die during space combat in this system, you may spend 1 trade good to apply +1 to the result.",,True,8,7 (x2),7,2,1,3,Flagship
+Y'sia Y'ssrila,The Yssaril Tribes,This ship can move through systems that contain other player's ships.,,True,8,5 (x2),5,2,2,3,Flagship
+[0.0.1],The L1Z1X Mindnet,"During a space combat, hits produced by this ship and by your dreadnoughts in this system must be assigned to non-fighter ships if able.",,True,8,5 (x2),5,2,1,5,Flagship
