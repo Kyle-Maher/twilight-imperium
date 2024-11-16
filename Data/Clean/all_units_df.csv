@@ -1,86 +1,86 @@
 Unit_Name,Faction_Name,Unit_Abilities,Standard_Abilities,Has_Sustain_Damage,Cost,Combat,Combat_Value,Shots,Move,Capacity,Unit_Type,Is_Ship,Is_Ground_Force,Has_Anti_Fighter,Anti_Fighter_Value,Anti_Fighter_Shots,Has_Bombardment,Bombardment_Value,Bombardment_Shots,Has_Space_Cannon,Space_Cannon_Value,Space_Cannon_Shots
-Advanced Carrier,The Federation of Sol,,,False,3,9,9,1,1^,6^,Carrier,True,False,False,,,False,,,False,,
-Advanced Carrier II,The Federation of Sol,,,True,3,9,9,1,2,8,Carrier,True,False,False,,,False,,,False,,
-Arc Secundus,The Barony of Letnev,"Other players' units in this system lose PLANETARY SHIELD & At the start of each space combat round, repair this ship",Bombardment 5 (x3),True,8,5 (x2),5,2,1,3,Flagship,True,False,False,,,True,5,3,False,,
-Artemiris,The Council Keleres,Other players must spend 2 influence to activate the system that contains this ship.,,True,8,7 (x2),7,2,1,6,Flagship,True,False,False,,,False,,,False,,
-Arvicon Rex,The Mahact Gene Sorcerers,"During combat against an opponent whose command token is not in your fleet pool, apply +2 to the results of this unit's combat rolls",,True,8,5 (x2),5,2,1,3,Flagship,True,False,False,,,False,,,False,,
-C'Morran N'orr,Sardakk N'orr,Apply +1 to the result of each of your other ship's combat rolls in this system.,,True,8,6 (x2),6,2,1,3,Flagship,True,False,False,,,False,,,False,,
-Carrier,Common Unit,,,False,3,9,9,1,1^,4^,Carrier,True,False,False,,,False,,,False,,
-Carrier II,Common Unit,,,False,3,9,9,1,2,6,Carrier,True,False,False,,,False,,,False,,
-Cruiser,Common Unit,,,False,2,7^,7,1,2^,-^,Cruiser,True,False,False,,,False,,,False,,
-Cruiser II,Common Unit,,,False,2,6,6,1,3,1,Cruiser,True,False,False,,,False,,,False,,
-Destroyer,Common Unit,,Anti-Fighter Barrage 9 (x2),False,1,9^,9,1,2,0,Destroyer,True,False,True,9,2,False,,,False,,
-Destroyer II,Common Unit,,Anti-Fighter Barrage 6 (x3),False,1,8,8,1,2,0,Destroyer,True,False,True,6,3,False,,,False,,
-Dreadnought,Common Unit,,Bombardment 5,True,4,5,5,1,1^,1,Dreadnought,True,False,False,,,True,,1,False,,
-Dreadnought II,Common Unit,"""Direct Hit"" cards are no longer effective against this type of ship.",Bombardment 5,True,4,5,5,1,2,1,Dreadnought,True,False,False,,,True,,1,False,,
-Duha Menaimon,The Arborec,"After you activate this system, you may produce up to 5 units in this system.",,True,8,7 (x2),7,2,1,5,Flagship,True,False,False,,,False,,,False,,
-Dynamo,The Empyrean,"After any player's unit in this system or an adjacent system uses SUSTAIN DAMAGE, you may spend 2 influence to repair that unit.",,True,8,5 (x2),5,2,1,3,Flagship,True,False,False,,,False,,,False,,
-Exotrireme,Sardakk N'orr,,Bombardment 4 (x2),True,4,5,5,1,1^,1,Dreadnought,True,False,False,,,True,4,2,False,,
-Exotrireme II,Sardakk N'orr,"After a round of space combat, you may destroy this unit to destroy up to 2 ships in this system. & ""Direct Hit"" cards are no longer effective against this type of ship.",Bombardment 4 (x2),True,4,5,5,1,2,1,Dreadnought,True,False,False,,,True,4,2,False,,
-Fighter,Common Unit,,,False,1 (x2),9^,9,1,-^,0,Fighter,True,False,False,,,False,,,False,,
-Fighter II,Common Unit,This unit may move without being transported. & Fighters in excess of your ships' capacity count against your fleet pool,,False,1 (x2),8,8,1,2,0,Fighter,True,False,False,,,False,,,False,,
-Fourth Moon,The Mentak Coalition,Other players' ships in this system cannot use SUSTAIN DAMAGE,,True,8,7 (x2),7,2,1,3,Flagship,True,False,False,,,False,,,False,,
-Genesis,The Federation of Sol,"At the end of the status phase, place 1 infantry from your reinforcements in this system's space area.",,True,8,5 (x2),5,2,1,12,Flagship,True,False,False,,,False,,,False,,
-Hil Colish,The Ghosts of Creuss,"This ship's system contains a delta wormhole & During movement, this ship may move before or after your other ships",,True,8,5,5,1,1,3,Flagship,True,False,False,,,False,,,False,,
-Hybrid Crystal Fighter,The Naalu Collective,,,False,1 (x2),8^,8,1,-^,0,Fighter,True,False,False,,,False,,,False,,
-Hybrid Crystal Fighter II,The Naalu Collective,This unit may move without being transported.  Each fighter in excess of your ships' capacity counts as 1/2 of a ship against your fleet pool,,False,1 (x2),7,7,1,2,0,Fighter,True,False,False,,,False,,,False,,
-J.N.S. Hylarim,The Universities of Jol-Nar,"When making a combat roll for this ship, each result of a 9 or 10, before applying modifiers, produces 2 additional hits.",,True,8,6 (x2),6,2,1,3,Flagship,True,False,False,,,False,,,False,,
-Loncarra Ssodu,The Xxcha Kingdom,You may use this unit's SPACE CANNON against ships that are in adjacent systems.,Space Cannon 5 (x3),True,8,7 (x2),7,2,1,3,Flagship,True,False,False,,,False,,,True,5,3
-Matriarch,The Naalu Collective,"During an invasion in this system, you may commit fighters to planets as if they were ground forces. When combat ends, return those units to the space area.",,True,8,9 (x2),9,2,1,6,Flagship,True,False,False,,,False,,,False,,
-Memoria,The Nomad,You may treat this unit as if it were adjacent to systems that contain one or more of your mechs,Anti-Fighter Barrage 8 (x3),True,8,7 (x2)^,7,2,1^,3^,Flagship,True,False,True,8,3,False,,,False,,
-Memoria II,The Nomad,You may treat this unit as if it were adjacent to systems that contain one or more of your mechs,Anti-Fighter Barrage 5 (x3),True,8,5 (x2),5,2,2,6,Flagship,True,False,True,5,3,False,,,False,,
-Ouranos,The Titans of Ul,"DEPLOY: After you activate a system that contains 1 or more of your PDS, you may replace 1 of those PDS with this unit",,True,8,7 (x2),7,2,1,3,Flagship,True,False,False,,,False,,,False,,
-Prototype War Sun I,The Embers of Muaat,,Other players' units in this system lose their Planetary Shield ability & Bombardment 3 (x3),True,12^,3 (x3),3,3,1^,6,War_Sun,True,False,False,,,True,3,3,False,,
-Prototype War Sun II,The Embers of Muaat,,Other players' units in this system lose their Planetary Shield ability & Bombardment 3 (x3),True,10,3 (x3),3,3,3,6,War_Sun,True,False,False,,,True,3,3,False,,
-Quetzecoatl,The Argent Flight,Other players cannot use SPACE CANNON against your ships in this system,,True,8,7 (x2),7,2,1,3,Flagship,True,False,False,,,False,,,False,,
-Salai Sai Corian,The Winnu,"When this unit makes a combat roll, it rolls a number of dice equal to the number of your opponent's non-fighter ships in this system.",,True,8,7,7,1,1,3,Flagship,True,False,False,,,False,,,False,,
-Saturn Engine I,The Titans of Ul,,,False,2,7^,7,1,2^,1^,Cruiser,True,False,False,,,False,,,False,,
-Saturn Engine II,The Titans of Ul,,,True,2,6,6,1,3,2,Cruiser,True,False,False,,,False,,,False,,
-Son of Ragh,The Clan of Saar,,Anti-Fighter Barrage 6 (x4),True,8,5 (x2),5,2,1,3,Flagship,True,False,True,6,4,False,,,False,,
-Strike Wing Alpha I,The Argent Flight,,Anti-Fighter Barrage 9 (x2),False,1,8^,8,1,2,1,Destroyer,True,False,True,9,2,False,,,False,,
-Strike Wing Alpha II,The Argent Flight,"When this unit uses ANTI-FIGHTER BARRAGE, each result of 9 or 10 also destroys 1 of your opponents infantry in the space area of the active system",Anti-Fighter Barrage 6 (x3),False,1,7,7,1,2,1,Destroyer,True,False,True,6,3,False,,,False,,
-Super-Dreadnought,The L1Z1X Mindnet,,Bombardment 5,True,4,5^,5,1,1^,2,Dreadnought,True,False,False,,,True,,1,False,,
-Super-Dreadnought II,The L1Z1X Mindnet,"""Direct Hit"" cards are no longer effective against this type of ship.",Bombardment 4,True,4,4,4,1,2,2,Dreadnought,True,False,False,,,True,,1,False,,
-The Alastor,The Nekro Virus,"At the start of a space combat, choose any number of your ground forces in this system to participate in that combat as if they were ships.",,True,8,9 (x2),9,2,1,3,Flagship,True,False,False,,,False,,,False,,
-The Inferno,The Embers of Muaat,ACTION: Spend 1 token from your strategy pool to place 1 cruiser in this unit's system.,,True,8,5 (x2),5,2,1,3,Flagship,True,False,False,,,False,,,False,,
-The Terror Between,The Vuil'Raith Cabal,"Capture all other non-structure units that are destroyed in this unit's system, including your own",Bombardment 5,True,8,5 (x2),5,2,1,3,Flagship,True,False,False,,,True,,1,False,,
-Van Hauge,The Yin Brotherhood,"When this ship is destroyed, destroy all ships in this system.",,True,8,9 (x2),9,2,1,3,Flagship,True,False,False,,,False,,,False,,
-Visz el Vir,The Naaz-Rokha Alliance,Your mechs in this system roll 1 additional die during combat,,True,8,9 (x2),9,2,1,4,Flagship,True,False,False,,,False,,,False,,
-War Sun,Common Unit,,Other players' units in this system lose their Planetary Shield ability & Bombardment 3 (x3),True,12,3 (x3),3,3,2,6,War_Sun,True,False,False,,,True,3,3,False,,
-Wrath of Kenara,The Emirates of Hacan,"After you roll a die during space combat in this system, you may spend 1 trade good to apply +1 to the result.",,True,8,7 (x2),7,2,1,3,Flagship,True,False,False,,,False,,,False,,
-Y'sia Y'ssrila,The Yssaril Tribes,This ship can move through systems that contain other player's ships.,,True,8,5 (x2),5,2,2,3,Flagship,True,False,False,,,False,,,False,,
-[0.0.1],The L1Z1X Mindnet,"During a space combat, hits produced by this ship and by your dreadnoughts in this system must be assigned to non-fighter ships if able.",,True,8,5 (x2),5,2,1,5,Flagship,True,False,False,,,False,,,False,,
-Infantry,Common Unit,,,False,1 (x2),8^,8,1,,,Infantry,False,True,False,,,False,,,False,,
-Infantry II,Common Unit,"After this unit is destroyed, roll 1 die. If the result is 6 or greater, place the unit on this card. At the start of your next turn, place each unit that is on this card on a planet you control in your home system",,False,1 (x2),7,7,1,,,Infantry,False,True,False,,,False,,,False,,
-Spec Ops I,The Federation of Sol,,,False,1 (x2),7^,7,1,,,Infantry,False,True,False,,,False,,,False,,
-Spec Ops II,The Federation of Sol,"After this unit is destroyed, roll 1 die. If the result is 5 or greater, place the unit on this card. At the start of your next turn, place each unit that is on this card on a planet you control in your home system",,False,1 (x2),6,6,1,,,Infantry,False,True,False,,,False,,,False,,
-Letani Warrior I,The Arborec,Production 1,,False,1 (x2),8^,8,1,,,Infantry,False,True,False,,,False,,,False,,
-Letani Warrior II,The Arborec,"After this unit is destroyed, roll 1 die. If the result is 6 or greater, place the unit on this card. At the start of your next turn, place each unit that is on this card on a planet you control in your home system. & Production 2",,False,1 (x2),7,7,1,,,Infantry,False,True,False,,,False,,,False,,
-Crimson Legionnaire I,The Mahact Gene Sorcerers,"After this unit is destroyed, gain 1 commodity or convert 1 of your commodities to a trade good.",,False,1 (x2),8^,8,1,,,Infantry,False,True,False,,,False,,,False,,
-Crimson Legionnaire II,The Mahact Gene Sorcerers,"After this unit is destroyed, gain 1 commodity or convert 1 of your commodities to a trade good. Then, place the unit on this card. At the start of your next turn, place each unit that is on this card on a planet you control in your home system",,False,1 (x2),7,7,1,,,Infantry,False,True,False,,,False,,,False,,
-Letani Behemoth,The Arborec,DEPLOY: When you use MITOSIS faction ability you may replace 1 of your infantry with 1 mech from your reinforcements instead & Production 2,Planetary Shield,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Aerie Sentinel,The Argent Flight,This unit does not count against capacity if it is being transported or if it is in a space area with 1 or more of your ships that has capacity values.,,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Dunlain Reaper,The Barony of Letnev,"DEPLOY: At the start of a round of ground combat, you may spend 2 resources to replace 1 of your infantry in that combat with 1 mech.",,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Scavenger Zeta,The Clan of Saar,"DEPLOY: After you gain control of a planet, you may spend 1 trade good to place 1 mech on that planet.",,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Ember Colossus,The Embers of Muaat,"When you use your STAR FORGE faction ability in this system or an adjacent system, you may place 1 infantry from your reinforcements with this unit.",,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Pride of Kenara,The Emirates of Hacan,"This planet's card may be traded as part of a transaction; if you do, move all of your units from this planet to another planet you control.",,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Watcher,The Empyrean,You may remove this unit from a system that contains or is adjacent to another player's units to cancel an action card played by that player.,,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-ZS Thunderbolt M2,The Federation of Sol,DEPLOY: After you use your ORBITAL DROP faction ability you may spend 3 resources to place 1 mech on that planet.,,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Icarus Drive,The Ghosts of Creuss,"After any player activates a system, you may remove this unit from the game board to place or move a Creuss wormhole token into this system.",,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Annihilator,The L1Z1X Mindnet,"While not participating in ground combat, this unit can use its BOMBARDMENT ability on planets in its system as if it were a ship.",Bombardment 8,True,2,6,6,1,,,Mechs,False,True,False,,,True,,1,False,,
-Starlancer,The Mahact Gene-Sorcerers,"After a player whose command token is in your fleet pool activates this system, you may spend their token from your fleet pool to end their turn; they gain that token.",,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Moll Terminus,The Mentak Coalition,Other players' ground forces on this planet cannot use SUSTAIN DAMAGE.,,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Iconoclast,The Naalu Collective,"During combat against an opponent who has at least 1 relic fragment, apply +2 to the results of this unit's combat rolls.",,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-IconoclastΩ,The Naalu Collective,Other players cannot use ANTI-FIGHTER BARRAGE against your units in this system.,,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Eidolon,The Naaz-Rokha Alliance,"If this unit is in the space area of the active system at the start of a space combat, flip this card. & (This card begins the game with this side face up)",,True,2,6 (x2),6,2,,,Mechs,False,True,False,,,False,,,False,,
-Z-Grav Eidolon,The Naaz-Rokha Alliance,"If this unit is in the space area of the active system, it is also a ship. At the end of a space battle in the active system, flip this card. & (This card begins the game with this side face down)",,False,2,8 (x2),8,2,,,Mechs,False,True,False,,,False,,,False,,
-Mordred,The Nekro Virus,"During combat against an opponent who has an ""X"" or ""Y"" token on 1 or more of their technologies, apply +2 to the result of each of this unit's combat rolls.",,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Quantum Manipulator,The Nomad,"While this unit is in a space area during combat, you may use its SUSTAIN DAMAGE ability to cancel a hit that is produced against your ships in this system.",,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Valkyrie Exoskeleton,Sardakk N'orr,"After this unit uses its SUSTAIN DAMAGE ability during Ground Combat, it produces 1 hit against your opponent's ground forces on this planet.",,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Hecatoncheires,The Titans of Ul,"DEPLOY: When you would place a PDS on a planet, you may place 1 mech and 1 infantry on that planet instead.",,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Shield Paling,The Universities of Jol-Nar,Your infantry on this planet are not affected by your FRAGILE faction ability.,,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Reanimator,The Vuil'Raith Cabal,"When your infantry on this planet are destroyed, place them on your faction sheet; those units are captured.",,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Reclaimer,The Winnu,"After you resolve a tactical action where you gained control of this planet, you may place 1 PDS or 1 Space Dock from your reinforcements on this planet.",,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Indomitus,The Xxcha Kingdom,You may use this unit's SPACE CANNON against ships that are in adjacent systems.,Space Cannon 8,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,True,,1
-Moyin's ashes,The Yin Brotherhood,"DEPLOY: When you use your INDOCTRINATION faction ability, you may spend 1 additional influence to replace your opponent's unit with 1 mech instead of 1 infantry.",,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
-Blackshade Infiltrator,The Yssaril Tribes,"DEPLOY: After you use your STALL TACTICS faction ability, you may place 1 mech on a planet you control.",,True,2,6,6,1,,,Mechs,False,True,False,,,False,,,False,,
+Advanced Carrier,The Federation of Sol,,,False,3,9,9,1,1^,6^,Carrier,True,False,False,0,0,False,0,0,False,0,0
+Advanced Carrier II,The Federation of Sol,,,True,3,9,9,1,2,8,Carrier,True,False,False,0,0,False,0,0,False,0,0
+Arc Secundus,The Barony of Letnev,"Other players' units in this system lose PLANETARY SHIELD & At the start of each space combat round, repair this ship",Bombardment 5 (x3),True,8,5 (x2),5,2,1,3,Flagship,True,False,False,0,0,True,5,3,False,0,0
+Artemiris,The Council Keleres,Other players must spend 2 influence to activate the system that contains this ship.,,True,8,7 (x2),7,2,1,6,Flagship,True,False,False,0,0,False,0,0,False,0,0
+Arvicon Rex,The Mahact Gene Sorcerers,"During combat against an opponent whose command token is not in your fleet pool, apply +2 to the results of this unit's combat rolls",,True,8,5 (x2),5,2,1,3,Flagship,True,False,False,0,0,False,0,0,False,0,0
+C'Morran N'orr,Sardakk N'orr,Apply +1 to the result of each of your other ship's combat rolls in this system.,,True,8,6 (x2),6,2,1,3,Flagship,True,False,False,0,0,False,0,0,False,0,0
+Carrier,Common Unit,,,False,3,9,9,1,1^,4^,Carrier,True,False,False,0,0,False,0,0,False,0,0
+Carrier II,Common Unit,,,False,3,9,9,1,2,6,Carrier,True,False,False,0,0,False,0,0,False,0,0
+Cruiser,Common Unit,,,False,2,7^,7,1,2^,-^,Cruiser,True,False,False,0,0,False,0,0,False,0,0
+Cruiser II,Common Unit,,,False,2,6,6,1,3,1,Cruiser,True,False,False,0,0,False,0,0,False,0,0
+Destroyer,Common Unit,,Anti-Fighter Barrage 9 (x2),False,1,9^,9,1,2,0,Destroyer,True,False,True,9,2,False,0,0,False,0,0
+Destroyer II,Common Unit,,Anti-Fighter Barrage 6 (x3),False,1,8,8,1,2,0,Destroyer,True,False,True,6,3,False,0,0,False,0,0
+Dreadnought,Common Unit,,Bombardment 5,True,4,5,5,1,1^,1,Dreadnought,True,False,False,0,0,True,0,1,False,0,0
+Dreadnought II,Common Unit,"""Direct Hit"" cards are no longer effective against this type of ship.",Bombardment 5,True,4,5,5,1,2,1,Dreadnought,True,False,False,0,0,True,0,1,False,0,0
+Duha Menaimon,The Arborec,"After you activate this system, you may produce up to 5 units in this system.",,True,8,7 (x2),7,2,1,5,Flagship,True,False,False,0,0,False,0,0,False,0,0
+Dynamo,The Empyrean,"After any player's unit in this system or an adjacent system uses SUSTAIN DAMAGE, you may spend 2 influence to repair that unit.",,True,8,5 (x2),5,2,1,3,Flagship,True,False,False,0,0,False,0,0,False,0,0
+Exotrireme,Sardakk N'orr,,Bombardment 4 (x2),True,4,5,5,1,1^,1,Dreadnought,True,False,False,0,0,True,4,2,False,0,0
+Exotrireme II,Sardakk N'orr,"After a round of space combat, you may destroy this unit to destroy up to 2 ships in this system. & ""Direct Hit"" cards are no longer effective against this type of ship.",Bombardment 4 (x2),True,4,5,5,1,2,1,Dreadnought,True,False,False,0,0,True,4,2,False,0,0
+Fighter,Common Unit,,,False,1 (x2),9^,9,1,-^,0,Fighter,True,False,False,0,0,False,0,0,False,0,0
+Fighter II,Common Unit,This unit may move without being transported. & Fighters in excess of your ships' capacity count against your fleet pool,,False,1 (x2),8,8,1,2,0,Fighter,True,False,False,0,0,False,0,0,False,0,0
+Fourth Moon,The Mentak Coalition,Other players' ships in this system cannot use SUSTAIN DAMAGE,,True,8,7 (x2),7,2,1,3,Flagship,True,False,False,0,0,False,0,0,False,0,0
+Genesis,The Federation of Sol,"At the end of the status phase, place 1 infantry from your reinforcements in this system's space area.",,True,8,5 (x2),5,2,1,12,Flagship,True,False,False,0,0,False,0,0,False,0,0
+Hil Colish,The Ghosts of Creuss,"This ship's system contains a delta wormhole & During movement, this ship may move before or after your other ships",,True,8,5,5,1,1,3,Flagship,True,False,False,0,0,False,0,0,False,0,0
+Hybrid Crystal Fighter,The Naalu Collective,,,False,1 (x2),8^,8,1,-^,0,Fighter,True,False,False,0,0,False,0,0,False,0,0
+Hybrid Crystal Fighter II,The Naalu Collective,This unit may move without being transported.  Each fighter in excess of your ships' capacity counts as 1/2 of a ship against your fleet pool,,False,1 (x2),7,7,1,2,0,Fighter,True,False,False,0,0,False,0,0,False,0,0
+J.N.S. Hylarim,The Universities of Jol-Nar,"When making a combat roll for this ship, each result of a 9 or 10, before applying modifiers, produces 2 additional hits.",,True,8,6 (x2),6,2,1,3,Flagship,True,False,False,0,0,False,0,0,False,0,0
+Loncarra Ssodu,The Xxcha Kingdom,You may use this unit's SPACE CANNON against ships that are in adjacent systems.,Space Cannon 5 (x3),True,8,7 (x2),7,2,1,3,Flagship,True,False,False,0,0,False,0,0,True,5,3
+Matriarch,The Naalu Collective,"During an invasion in this system, you may commit fighters to planets as if they were ground forces. When combat ends, return those units to the space area.",,True,8,9 (x2),9,2,1,6,Flagship,True,False,False,0,0,False,0,0,False,0,0
+Memoria,The Nomad,You may treat this unit as if it were adjacent to systems that contain one or more of your mechs,Anti-Fighter Barrage 8 (x3),True,8,7 (x2)^,7,2,1^,3^,Flagship,True,False,True,8,3,False,0,0,False,0,0
+Memoria II,The Nomad,You may treat this unit as if it were adjacent to systems that contain one or more of your mechs,Anti-Fighter Barrage 5 (x3),True,8,5 (x2),5,2,2,6,Flagship,True,False,True,5,3,False,0,0,False,0,0
+Ouranos,The Titans of Ul,"DEPLOY: After you activate a system that contains 1 or more of your PDS, you may replace 1 of those PDS with this unit",,True,8,7 (x2),7,2,1,3,Flagship,True,False,False,0,0,False,0,0,False,0,0
+Prototype War Sun I,The Embers of Muaat,,Other players' units in this system lose their Planetary Shield ability & Bombardment 3 (x3),True,12^,3 (x3),3,3,1^,6,War_Sun,True,False,False,0,0,True,3,3,False,0,0
+Prototype War Sun II,The Embers of Muaat,,Other players' units in this system lose their Planetary Shield ability & Bombardment 3 (x3),True,10,3 (x3),3,3,3,6,War_Sun,True,False,False,0,0,True,3,3,False,0,0
+Quetzecoatl,The Argent Flight,Other players cannot use SPACE CANNON against your ships in this system,,True,8,7 (x2),7,2,1,3,Flagship,True,False,False,0,0,False,0,0,False,0,0
+Salai Sai Corian,The Winnu,"When this unit makes a combat roll, it rolls a number of dice equal to the number of your opponent's non-fighter ships in this system.",,True,8,7,7,1,1,3,Flagship,True,False,False,0,0,False,0,0,False,0,0
+Saturn Engine I,The Titans of Ul,,,False,2,7^,7,1,2^,1^,Cruiser,True,False,False,0,0,False,0,0,False,0,0
+Saturn Engine II,The Titans of Ul,,,True,2,6,6,1,3,2,Cruiser,True,False,False,0,0,False,0,0,False,0,0
+Son of Ragh,The Clan of Saar,,Anti-Fighter Barrage 6 (x4),True,8,5 (x2),5,2,1,3,Flagship,True,False,True,6,4,False,0,0,False,0,0
+Strike Wing Alpha I,The Argent Flight,,Anti-Fighter Barrage 9 (x2),False,1,8^,8,1,2,1,Destroyer,True,False,True,9,2,False,0,0,False,0,0
+Strike Wing Alpha II,The Argent Flight,"When this unit uses ANTI-FIGHTER BARRAGE, each result of 9 or 10 also destroys 1 of your opponents infantry in the space area of the active system",Anti-Fighter Barrage 6 (x3),False,1,7,7,1,2,1,Destroyer,True,False,True,6,3,False,0,0,False,0,0
+Super-Dreadnought,The L1Z1X Mindnet,,Bombardment 5,True,4,5^,5,1,1^,2,Dreadnought,True,False,False,0,0,True,0,1,False,0,0
+Super-Dreadnought II,The L1Z1X Mindnet,"""Direct Hit"" cards are no longer effective against this type of ship.",Bombardment 4,True,4,4,4,1,2,2,Dreadnought,True,False,False,0,0,True,0,1,False,0,0
+The Alastor,The Nekro Virus,"At the start of a space combat, choose any number of your ground forces in this system to participate in that combat as if they were ships.",,True,8,9 (x2),9,2,1,3,Flagship,True,False,False,0,0,False,0,0,False,0,0
+The Inferno,The Embers of Muaat,ACTION: Spend 1 token from your strategy pool to place 1 cruiser in this unit's system.,,True,8,5 (x2),5,2,1,3,Flagship,True,False,False,0,0,False,0,0,False,0,0
+The Terror Between,The Vuil'Raith Cabal,"Capture all other non-structure units that are destroyed in this unit's system, including your own",Bombardment 5,True,8,5 (x2),5,2,1,3,Flagship,True,False,False,0,0,True,0,1,False,0,0
+Van Hauge,The Yin Brotherhood,"When this ship is destroyed, destroy all ships in this system.",,True,8,9 (x2),9,2,1,3,Flagship,True,False,False,0,0,False,0,0,False,0,0
+Visz el Vir,The Naaz-Rokha Alliance,Your mechs in this system roll 1 additional die during combat,,True,8,9 (x2),9,2,1,4,Flagship,True,False,False,0,0,False,0,0,False,0,0
+War Sun,Common Unit,,Other players' units in this system lose their Planetary Shield ability & Bombardment 3 (x3),True,12,3 (x3),3,3,2,6,War_Sun,True,False,False,0,0,True,3,3,False,0,0
+Wrath of Kenara,The Emirates of Hacan,"After you roll a die during space combat in this system, you may spend 1 trade good to apply +1 to the result.",,True,8,7 (x2),7,2,1,3,Flagship,True,False,False,0,0,False,0,0,False,0,0
+Y'sia Y'ssrila,The Yssaril Tribes,This ship can move through systems that contain other player's ships.,,True,8,5 (x2),5,2,2,3,Flagship,True,False,False,0,0,False,0,0,False,0,0
+[0.0.1],The L1Z1X Mindnet,"During a space combat, hits produced by this ship and by your dreadnoughts in this system must be assigned to non-fighter ships if able.",,True,8,5 (x2),5,2,1,5,Flagship,True,False,False,0,0,False,0,0,False,0,0
+Infantry,Common Unit,,,False,1 (x2),8^,8,1,,,Infantry,False,True,False,0,0,False,0,0,False,0,0
+Infantry II,Common Unit,"After this unit is destroyed, roll 1 die. If the result is 6 or greater, place the unit on this card. At the start of your next turn, place each unit that is on this card on a planet you control in your home system",,False,1 (x2),7,7,1,,,Infantry,False,True,False,0,0,False,0,0,False,0,0
+Spec Ops I,The Federation of Sol,,,False,1 (x2),7^,7,1,,,Infantry,False,True,False,0,0,False,0,0,False,0,0
+Spec Ops II,The Federation of Sol,"After this unit is destroyed, roll 1 die. If the result is 5 or greater, place the unit on this card. At the start of your next turn, place each unit that is on this card on a planet you control in your home system",,False,1 (x2),6,6,1,,,Infantry,False,True,False,0,0,False,0,0,False,0,0
+Letani Warrior I,The Arborec,Production 1,,False,1 (x2),8^,8,1,,,Infantry,False,True,False,0,0,False,0,0,False,0,0
+Letani Warrior II,The Arborec,"After this unit is destroyed, roll 1 die. If the result is 6 or greater, place the unit on this card. At the start of your next turn, place each unit that is on this card on a planet you control in your home system. & Production 2",,False,1 (x2),7,7,1,,,Infantry,False,True,False,0,0,False,0,0,False,0,0
+Crimson Legionnaire I,The Mahact Gene Sorcerers,"After this unit is destroyed, gain 1 commodity or convert 1 of your commodities to a trade good.",,False,1 (x2),8^,8,1,,,Infantry,False,True,False,0,0,False,0,0,False,0,0
+Crimson Legionnaire II,The Mahact Gene Sorcerers,"After this unit is destroyed, gain 1 commodity or convert 1 of your commodities to a trade good. Then, place the unit on this card. At the start of your next turn, place each unit that is on this card on a planet you control in your home system",,False,1 (x2),7,7,1,,,Infantry,False,True,False,0,0,False,0,0,False,0,0
+Letani Behemoth,The Arborec,DEPLOY: When you use MITOSIS faction ability you may replace 1 of your infantry with 1 mech from your reinforcements instead & Production 2,Planetary Shield,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Aerie Sentinel,The Argent Flight,This unit does not count against capacity if it is being transported or if it is in a space area with 1 or more of your ships that has capacity values.,,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Dunlain Reaper,The Barony of Letnev,"DEPLOY: At the start of a round of ground combat, you may spend 2 resources to replace 1 of your infantry in that combat with 1 mech.",,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Scavenger Zeta,The Clan of Saar,"DEPLOY: After you gain control of a planet, you may spend 1 trade good to place 1 mech on that planet.",,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Ember Colossus,The Embers of Muaat,"When you use your STAR FORGE faction ability in this system or an adjacent system, you may place 1 infantry from your reinforcements with this unit.",,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Pride of Kenara,The Emirates of Hacan,"This planet's card may be traded as part of a transaction; if you do, move all of your units from this planet to another planet you control.",,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Watcher,The Empyrean,You may remove this unit from a system that contains or is adjacent to another player's units to cancel an action card played by that player.,,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+ZS Thunderbolt M2,The Federation of Sol,DEPLOY: After you use your ORBITAL DROP faction ability you may spend 3 resources to place 1 mech on that planet.,,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Icarus Drive,The Ghosts of Creuss,"After any player activates a system, you may remove this unit from the game board to place or move a Creuss wormhole token into this system.",,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Annihilator,The L1Z1X Mindnet,"While not participating in ground combat, this unit can use its BOMBARDMENT ability on planets in its system as if it were a ship.",Bombardment 8,True,2,6,6,1,,,Mechs,False,True,False,0,0,True,0,1,False,0,0
+Starlancer,The Mahact Gene-Sorcerers,"After a player whose command token is in your fleet pool activates this system, you may spend their token from your fleet pool to end their turn; they gain that token.",,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Moll Terminus,The Mentak Coalition,Other players' ground forces on this planet cannot use SUSTAIN DAMAGE.,,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Iconoclast,The Naalu Collective,"During combat against an opponent who has at least 1 relic fragment, apply +2 to the results of this unit's combat rolls.",,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+IconoclastΩ,The Naalu Collective,Other players cannot use ANTI-FIGHTER BARRAGE against your units in this system.,,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Eidolon,The Naaz-Rokha Alliance,"If this unit is in the space area of the active system at the start of a space combat, flip this card. & (This card begins the game with this side face up)",,True,2,6 (x2),6,2,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Z-Grav Eidolon,The Naaz-Rokha Alliance,"If this unit is in the space area of the active system, it is also a ship. At the end of a space battle in the active system, flip this card. & (This card begins the game with this side face down)",,False,2,8 (x2),8,2,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Mordred,The Nekro Virus,"During combat against an opponent who has an ""X"" or ""Y"" token on 1 or more of their technologies, apply +2 to the result of each of this unit's combat rolls.",,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Quantum Manipulator,The Nomad,"While this unit is in a space area during combat, you may use its SUSTAIN DAMAGE ability to cancel a hit that is produced against your ships in this system.",,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Valkyrie Exoskeleton,Sardakk N'orr,"After this unit uses its SUSTAIN DAMAGE ability during Ground Combat, it produces 1 hit against your opponent's ground forces on this planet.",,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Hecatoncheires,The Titans of Ul,"DEPLOY: When you would place a PDS on a planet, you may place 1 mech and 1 infantry on that planet instead.",,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Shield Paling,The Universities of Jol-Nar,Your infantry on this planet are not affected by your FRAGILE faction ability.,,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Reanimator,The Vuil'Raith Cabal,"When your infantry on this planet are destroyed, place them on your faction sheet; those units are captured.",,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Reclaimer,The Winnu,"After you resolve a tactical action where you gained control of this planet, you may place 1 PDS or 1 Space Dock from your reinforcements on this planet.",,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Indomitus,The Xxcha Kingdom,You may use this unit's SPACE CANNON against ships that are in adjacent systems.,Space Cannon 8,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,True,0,1
+Moyin's ashes,The Yin Brotherhood,"DEPLOY: When you use your INDOCTRINATION faction ability, you may spend 1 additional influence to replace your opponent's unit with 1 mech instead of 1 infantry.",,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
+Blackshade Infiltrator,The Yssaril Tribes,"DEPLOY: After you use your STALL TACTICS faction ability, you may place 1 mech on a planet you control.",,True,2,6,6,1,,,Mechs,False,True,False,0,0,False,0,0,False,0,0
