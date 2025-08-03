@@ -1,0 +1,35 @@
+Unit_Name,Faction_Name,Unit_Abilities,Standard_Abilities,Has_Sustain_Damage,Cost,Combat,Combat_Value,Shots,Move,Capacity,Unit_Type
+Infantry,Common Unit,,,False,1 (x2),8^,8,1,,,Infantry
+Infantry II,Common Unit,"After this unit is destroyed, roll 1 die. If the result is 6 or greater, place the unit on this card. At the start of your next turn, place each unit that is on this card on a planet you control in your home system",,False,1 (x2),7,7,1,,,Infantry
+Spec Ops I,The Federation of Sol,,,False,1 (x2),7^,7,1,,,Infantry
+Spec Ops II,The Federation of Sol,"After this unit is destroyed, roll 1 die. If the result is 5 or greater, place the unit on this card. At the start of your next turn, place each unit that is on this card on a planet you control in your home system",,False,1 (x2),6,6,1,,,Infantry
+Letani Warrior I,The Arborec,Production 1,,False,1 (x2),8^,8,1,,,Infantry
+Letani Warrior II,The Arborec,"After this unit is destroyed, roll 1 die. If the result is 6 or greater, place the unit on this card. At the start of your next turn, place each unit that is on this card on a planet you control in your home system. & Production 2",,False,1 (x2),7,7,1,,,Infantry
+Crimson Legionnaire I,The Mahact Gene Sorcerers,"After this unit is destroyed, gain 1 commodity or convert 1 of your commodities to a trade good.",,False,1 (x2),8^,8,1,,,Infantry
+Crimson Legionnaire II,The Mahact Gene Sorcerers,"After this unit is destroyed, gain 1 commodity or convert 1 of your commodities to a trade good. Then, place the unit on this card. At the start of your next turn, place each unit that is on this card on a planet you control in your home system",,False,1 (x2),7,7,1,,,Infantry
+Letani Behemoth,The Arborec,DEPLOY: When you use MITOSIS faction ability you may replace 1 of your infantry with 1 mech from your reinforcements instead & Production 2,Planetary Shield,True,2,6,6,1,,,Mechs
+Aerie Sentinel,The Argent Flight,This unit does not count against capacity if it is being transported or if it is in a space area with 1 or more of your ships that has capacity values.,,True,2,6,6,1,,,Mechs
+Dunlain Reaper,The Barony of Letnev,"DEPLOY: At the start of a round of ground combat, you may spend 2 resources to replace 1 of your infantry in that combat with 1 mech.",,True,2,6,6,1,,,Mechs
+Scavenger Zeta,The Clan of Saar,"DEPLOY: After you gain control of a planet, you may spend 1 trade good to place 1 mech on that planet.",,True,2,6,6,1,,,Mechs
+Ember Colossus,The Embers of Muaat,"When you use your STAR FORGE faction ability in this system or an adjacent system, you may place 1 infantry from your reinforcements with this unit.",,True,2,6,6,1,,,Mechs
+Pride of Kenara,The Emirates of Hacan,"This planet's card may be traded as part of a transaction; if you do, move all of your units from this planet to another planet you control.",,True,2,6,6,1,,,Mechs
+Watcher,The Empyrean,You may remove this unit from a system that contains or is adjacent to another player's units to cancel an action card played by that player.,,True,2,6,6,1,,,Mechs
+ZS Thunderbolt M2,The Federation of Sol,DEPLOY: After you use your ORBITAL DROP faction ability you may spend 3 resources to place 1 mech on that planet.,,True,2,6,6,1,,,Mechs
+Icarus Drive,The Ghosts of Creuss,"After any player activates a system, you may remove this unit from the game board to place or move a Creuss wormhole token into this system.",,True,2,6,6,1,,,Mechs
+Annihilator,The L1Z1X Mindnet,"While not participating in ground combat, this unit can use its BOMBARDMENT ability on planets in its system as if it were a ship.",Bombardment 8,True,2,6,6,1,,,Mechs
+Starlancer,The Mahact Gene-Sorcerers,"After a player whose command token is in your fleet pool activates this system, you may spend their token from your fleet pool to end their turn; they gain that token.",,True,2,6,6,1,,,Mechs
+Moll Terminus,The Mentak Coalition,Other players' ground forces on this planet cannot use SUSTAIN DAMAGE.,,True,2,6,6,1,,,Mechs
+Iconoclast,The Naalu Collective,"During combat against an opponent who has at least 1 relic fragment, apply +2 to the results of this unit's combat rolls.",,True,2,6,6,1,,,Mechs
+IconoclastΩ,The Naalu Collective,Other players cannot use ANTI-FIGHTER BARRAGE against your units in this system.,,True,2,6,6,1,,,Mechs
+Eidolon,The Naaz-Rokha Alliance,"If this unit is in the space area of the active system at the start of a space combat, flip this card. & (This card begins the game with this side face up)",,True,2,6 (x2),6,2,,,Mechs
+Z-Grav Eidolon,The Naaz-Rokha Alliance,"If this unit is in the space area of the active system, it is also a ship. At the end of a space battle in the active system, flip this card. & (This card begins the game with this side face down)",,False,2,8 (x2),8,2,,,Mechs
+Mordred,The Nekro Virus,"During combat against an opponent who has an ""X"" or ""Y"" token on 1 or more of their technologies, apply +2 to the result of each of this unit's combat rolls.",,True,2,6,6,1,,,Mechs
+Quantum Manipulator,The Nomad,"While this unit is in a space area during combat, you may use its SUSTAIN DAMAGE ability to cancel a hit that is produced against your ships in this system.",,True,2,6,6,1,,,Mechs
+Valkyrie Exoskeleton,Sardakk N'orr,"After this unit uses its SUSTAIN DAMAGE ability during Ground Combat, it produces 1 hit against your opponent's ground forces on this planet.",,True,2,6,6,1,,,Mechs
+Hecatoncheires,The Titans of Ul,"DEPLOY: When you would place a PDS on a planet, you may place 1 mech and 1 infantry on that planet instead.",,True,2,6,6,1,,,Mechs
+Shield Paling,The Universities of Jol-Nar,Your infantry on this planet are not affected by your FRAGILE faction ability.,,True,2,6,6,1,,,Mechs
+Reanimator,The Vuil'Raith Cabal,"When your infantry on this planet are destroyed, place them on your faction sheet; those units are captured.",,True,2,6,6,1,,,Mechs
+Reclaimer,The Winnu,"After you resolve a tactical action where you gained control of this planet, you may place 1 PDS or 1 Space Dock from your reinforcements on this planet.",,True,2,6,6,1,,,Mechs
+Indomitus,The Xxcha Kingdom,You may use this unit's SPACE CANNON against ships that are in adjacent systems.,Space Cannon 8,True,2,6,6,1,,,Mechs
+Moyin's ashes,The Yin Brotherhood,"DEPLOY: When you use your INDOCTRINATION faction ability, you may spend 1 additional influence to replace your opponent's unit with 1 mech instead of 1 infantry.",,True,2,6,6,1,,,Mechs
+Blackshade Infiltrator,The Yssaril Tribes,"DEPLOY: After you use your STALL TACTICS faction ability, you may place 1 mech on a planet you control.",,True,2,6,6,1,,,Mechs
