@@ -5,6 +5,9 @@
 # Adjust selection so that previous selections are not available
 # Adjust Reset to go to one Options
 # Add selection option to show faction specific units
+# Force integer conversion within simulate_battles()
+# Remove built in sim from simulate battles
+# Add num rounds selection
 ##################
 
 library(shiny)
@@ -19,12 +22,12 @@ library(readr)
 
 # Python Environment Setup
 use_virtualenv(file.path(dirname(this.path()), "..", ".venv"), required = TRUE)
-source_python("../python_test_file.py")
+source_python("../src/simulate.py")
 
 df <- read_csv("../data/clean/all_units_df.csv")
 
-unit_choices = df$Unit_Name[df$Faction_Name == "Common Unit"]
-default_unit = df$Unit_Name[df$Faction_Name == "Common Unit"][1]
+unit_choices <- df$Unit_Name[df$Faction_Name == "Common Unit"]
+default_unit <- df$Unit_Name[df$Faction_Name == "Common Unit"][1]
 
 # df$Unit_Name
 # df$Faction_Name
@@ -132,47 +135,41 @@ server <- function(input, output, session) {
     defending_unit_count(0)
   })
 
-  output$current_selection <- renderPrint({
-    list(
-      Attacker = list(
-        Unit = input$attacker_unit,
-        Count = input$attacker_count
-      ),
-      Defender = list(
-        Unit = input$defender_unit,
-        Count = input$defender_count
-      )
-    )
+
+  observeEvent(input$simulate, {
+    output$current_selection <- renderPrint({
+
+      # Collect attacker units
+      attackers <- list()
+      for(i in seq_len(attacking_unit_count())){
+        unit <- input[[paste0("attacker_unit_", i)]]
+        count <- input[[paste0("attacker_counter_", i)]]
+        if(!is.null(unit) && !is.null(count)){
+          attackers[[unit]] <- count
+        }
+      }
+
+      # Collect defender units
+      defenders <- list()
+      for(i in seq_len(defending_unit_count())){
+        unit <- input[[paste0("defender_unit_", i)]]
+        count <- input[[paste0("defender_counter_", i)]]
+        if(!is.null(unit) && !is.null(count)){
+          defenders[[unit]] <- count
+        }
+      }
+
+      attacker_units_dict <- r_to_py(lapply(attackers, as.integer))
+      defender_units_dict <- r_to_py(lapply(defenders, as.integer))
+
+      sim <- simulate_battles(attacker_units_dict, defender_units_dict)
+
+      sim
+
+    })
   })
 
 
-  output$current_selection <- renderPrint({
-
-    # Collect attacker units
-    attackers <- list()
-    for(i in seq_len(attacking_unit_count())){
-      unit <- input[[paste0("attacker_unit_", i)]]
-      count <- input[[paste0("attacker_counter_", i)]]
-      if(!is.null(unit) && !is.null(count)){
-        attackers[[unit]] <- count
-      }
-    }
-
-    # Collect defender units
-    defenders <- list()
-    for(i in seq_len(defending_unit_count())){
-      unit <- input[[paste0("defender_unit_", i)]]
-      count <- input[[paste0("defender_counter_", i)]]
-      if(!is.null(unit) && !is.null(count)){
-        defenders[[unit]] <- count
-      }
-    }
-
-    list(
-      Attacker = attackers,
-      Defender = defenders
-    )
-  })
 
 
 }
