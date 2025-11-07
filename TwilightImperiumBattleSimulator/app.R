@@ -27,19 +27,26 @@ ui <- navbarPage("Twilight Imperium Resources",
   tabPanel("Battle Simulator",
     fluidPage(
       fluidRow(
-        column(6,
-          actionButton("simulate", "Simulate")
+        column(8,
+          actionButton("simulate", "Simulate"),
+          hr()
         )
       ),
       fluidRow(
-        column(6,
-          h4("Attacking Units"),
-          actionButton("add_attacker", "Add Attacker Unit", class = "btn-primary"),
+        column(4,
+          h4("Attacker's Units"),
+          div(
+            actionButton("add_attacker", "Add Attacking Unit", class = "btn-primary"),
+            actionButton("clear_attaking_units", "Clear")
+          ),
           uiOutput("atacking_unit_selection")
         ),
-        column(6,
-          h4("Defending Units"),
-          actionButton("add_defender", "Add Defender Unit", class = "btn-danger"),
+        column(4,
+          h4("Defender's Units"),
+          div(
+            actionButton("add_defender", "Add Defending Unit", class = "btn-danger"),
+            actionButton("clear_defending_units", "Clear")
+          ),
           uiOutput("defending_unit_selection")
         )
       )
@@ -55,7 +62,7 @@ server <- function(input, output, session) {
       selector = "#add_attacker",
       where = "beforeBegin",
       ui = fluidRow(
-        column(4,
+        column(7,
           selectInput(
             inputId = paste0("attacker_unit"),
             label = "Type",
@@ -63,7 +70,7 @@ server <- function(input, output, session) {
             selected = df$Unit_Name[1]
           )
         ),
-        column(2,
+        column(3,
           numericInput(
             inputId = paste0("attacker_counter"),
             label = "Count",
@@ -80,7 +87,7 @@ server <- function(input, output, session) {
       selector = "#add_defender",
       where = "beforeBegin",
       ui = fluidRow(
-        column(4,
+        column(7,
           selectInput(
             inputId = paste0("defender_unit"),
             label = "Type",
@@ -88,7 +95,7 @@ server <- function(input, output, session) {
             selected = df$Unit_Name[1]
           )
         ),
-        column(2,
+        column(3,
           numericInput(
             inputId = paste0("defender_counter"),
             label = "Count",
