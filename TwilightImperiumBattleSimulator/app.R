@@ -27,8 +27,9 @@ ui <- navbarPage("Twilight Imperium Resources",
   tabPanel("Battle Simulator",
     fluidPage(
       fluidRow(
-        column(8,
+        column(7,
           actionButton("simulate", "Simulate"),
+          actionButton("clear", "Reset"),
           hr()
         )
       ),
@@ -37,7 +38,7 @@ ui <- navbarPage("Twilight Imperium Resources",
           h4("Attacker's Units"),
           div(
             actionButton("add_attacker", "Add Attacking Unit", class = "btn-primary"),
-            actionButton("clear_attaking_units", "Clear")
+            # actionButton("clear_attaking_units", "Clear")
           ),
           uiOutput("atacking_unit_selection")
         ),
@@ -45,7 +46,7 @@ ui <- navbarPage("Twilight Imperium Resources",
           h4("Defender's Units"),
           div(
             actionButton("add_defender", "Add Defending Unit", class = "btn-danger"),
-            actionButton("clear_defending_units", "Clear")
+            # actionButton("clear_defending_units", "Clear")
           ),
           uiOutput("defending_unit_selection")
         )
@@ -56,15 +57,19 @@ ui <- navbarPage("Twilight Imperium Resources",
 )
 
 server <- function(input, output, session) {
+  attacking_unit_count <- reactiveVal(0)
+  defending_unit_count <- reactiveVal(0)
 
   observeEvent(input$add_attacker, {
+    attacking_unit_count(attacking_unit_count() + 1)
+
     insertUI(
       selector = "#add_attacker",
       where = "beforeBegin",
       ui = fluidRow(
         column(7,
           selectInput(
-            inputId = paste0("attacker_unit"),
+            inputId = paste0("attacker_unit_", attacking_unit_count()),
             label = "Type",
             choices = df$Unit_Name,
             selected = df$Unit_Name[1]
@@ -72,7 +77,7 @@ server <- function(input, output, session) {
         ),
         column(3,
           numericInput(
-            inputId = paste0("attacker_counter"),
+            inputId = paste0("attacker_counter_", attacking_unit_count()),
             label = "Count",
             value = 1,
             min = 1
@@ -83,13 +88,15 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$add_defender, {
+    defending_unit_count(defending_unit_count() + 1)
+
     insertUI(
       selector = "#add_defender",
       where = "beforeBegin",
       ui = fluidRow(
         column(7,
           selectInput(
-            inputId = paste0("defender_unit"),
+            inputId = paste0("defender_unit_", defending_unit_count()),
             label = "Type",
             choices = df$Unit_Name,
             selected = df$Unit_Name[1]
@@ -97,7 +104,7 @@ server <- function(input, output, session) {
         ),
         column(3,
           numericInput(
-            inputId = paste0("defender_counter"),
+            inputId = paste0("defender_counter_", defending_unit_count()),
             label = "Count",
             value = 1,
             min = 1
@@ -105,6 +112,11 @@ server <- function(input, output, session) {
         )
       )
     )
+  })
+
+  observeEvent(input$clear, {
+    removeUI(selector = "div.form-group.shiny-input-container", multiple = TRUE)
+    
   })
 
   output$current_selection <- renderPrint({
