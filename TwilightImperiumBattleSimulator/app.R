@@ -1,5 +1,11 @@
 
-
+##################
+# To Do:
+# UI
+# Adjust selection so that previous selections are not available
+# Adjust Reset to go to one Options
+# Add selection option to show faction specific units
+##################
 
 library(shiny)
 library(reticulate)  # Runs Python Code
@@ -16,6 +22,9 @@ use_virtualenv(file.path(dirname(this.path()), "..", ".venv"), required = TRUE)
 source_python("../python_test_file.py")
 
 df <- read_csv("../data/clean/all_units_df.csv")
+
+unit_choices = df$Unit_Name[df$Faction_Name == "Common Unit"]
+default_unit = df$Unit_Name[df$Faction_Name == "Common Unit"][1]
 
 # df$Unit_Name
 # df$Faction_Name
@@ -49,6 +58,9 @@ ui <- navbarPage("Twilight Imperium Resources",
             # actionButton("clear_defending_units", "Clear")
           ),
           uiOutput("defending_unit_selection")
+        ),
+        column(4,
+          verbatimTextOutput("current_selection")
         )
       )
     )
@@ -71,8 +83,8 @@ server <- function(input, output, session) {
           selectInput(
             inputId = paste0("attacker_unit_", attacking_unit_count()),
             label = "Type",
-            choices = df$Unit_Name,
-            selected = df$Unit_Name[1]
+            choices = unit_choices,
+            selected = default_unit
           )
         ),
         column(3,
@@ -98,8 +110,8 @@ server <- function(input, output, session) {
           selectInput(
             inputId = paste0("defender_unit_", defending_unit_count()),
             label = "Type",
-            choices = df$Unit_Name,
-            selected = df$Unit_Name[1]
+            choices = unit_choices,
+            selected = default_unit
           )
         ),
         column(3,
@@ -116,7 +128,8 @@ server <- function(input, output, session) {
 
   observeEvent(input$clear, {
     removeUI(selector = "div.form-group.shiny-input-container", multiple = TRUE)
-    
+    attacking_unit_count(0)
+    defending_unit_count(0)
   })
 
   output$current_selection <- renderPrint({
@@ -131,6 +144,37 @@ server <- function(input, output, session) {
       )
     )
   })
+
+
+  output$current_selection <- renderPrint({
+
+    # Collect attacker units
+    attackers <- list()
+    for(i in seq_len(attacking_unit_count())){
+      unit <- input[[paste0("attacker_unit_", i)]]
+      count <- input[[paste0("attacker_counter_", i)]]
+      if(!is.null(unit) && !is.null(count)){
+        attackers[[unit]] <- count
+      }
+    }
+
+    # Collect defender units
+    defenders <- list()
+    for(i in seq_len(defending_unit_count())){
+      unit <- input[[paste0("defender_unit_", i)]]
+      count <- input[[paste0("defender_counter_", i)]]
+      if(!is.null(unit) && !is.null(count)){
+        defenders[[unit]] <- count
+      }
+    }
+
+    list(
+      Attacker = attackers,
+      Defender = defenders
+    )
+  })
+
+
 }
 
 shinyApp(ui, server)
