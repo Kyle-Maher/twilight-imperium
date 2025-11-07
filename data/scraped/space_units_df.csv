@@ -22,6 +22,7 @@ Exile I,The Crimson Rebellion,"At the end of any player's combat in this unit's 
 Exile II,The Crimson Rebellion,"At the end of any player's combat in this unit's system or up to two systems away, you may place 1 active or inactive breach in that system. & ",Anti-Fighter Barrage 6 (x3),False,1,7,7,1,2,0,Destroyer
 Exotrireme,Sardakk N'orr,,Bombardment 4 (x2),True,4,5,5,1,1^,1,Dreadnought
 Exotrireme II,Sardakk N'orr,"After a round of space combat, you may destroy this unit to destroy up to 2 ships in this system. & ""Direct Hit"" cards are no longer effective against this type of ship.",Bombardment 4 (x2),True,4,5,5,1,2,1,Dreadnought
+Fighter,Common Unit,,,False,1 (x2),9^,9,1,-^,0,Fighter
 Fighter II,Common Unit,This unit may move without being transported. & Fighters in excess of your ships' capacity count against your fleet pool,,False,1 (x2),8,8,1,2,0,Fighter
 Fourth Moon,The Mentak Coalition,Other players' ships in this system cannot use SUSTAIN DAMAGE,,True,8,7 (x2),7,2,1,3,Flagship
 Genesis,The Federation of Sol,"At the end of the status phase, place 1 infantry from your reinforcements in this system's space area.",,True,8,5 (x2),5,2,1,12,Flagship
@@ -63,7 +64,6 @@ The Terror Between,The Vuil'Raith Cabal,"Capture all other non-structure units t
 Tizona,The Saint of Swords,Apply +1 to the MOVE value of this ship if it would transport 4 units.,,True,8,3,3,1,2,4,Flagship
 Van Hauge,The Yin Brotherhood,"When this ship is destroyed, destroy all ships in this system.",,True,8,9 (x2),9,2,1,3,Flagship
 Visz el Vir,The Naaz-Rokha Alliance,Your mechs in this system roll 1 additional die during combat,,True,8,9 (x2),9,2,1,4,Flagship
-War Sun,Common Unit,,,False,-^,-^,-,1,-^,-^,War_Sun
 War Sun,Common Unit,,Other players' units in this system lose their Planetary Shield ability & Bombardment 3 (x3),True,12,3 (x3),3,3,2,6,War_Sun
 Wrath of Kenara,The Emirates of Hacan,"After you roll a die during space combat in this system, you may spend 1 trade good to apply +1 to the result.",,True,8,7 (x2),7,2,1,3,Flagship
 Y'sia Y'ssrila,The Yssaril Tribes,This ship can move through systems that contain other player's ships.,,True,8,5 (x2),5,2,2,3,Flagship
