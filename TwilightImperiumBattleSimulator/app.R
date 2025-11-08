@@ -27,7 +27,7 @@ source_python("../src/simulate.py")
 df <- read_csv("../data/clean/all_units_df.csv")
 
 base_unit_choices <- df$Unit_Name[df$Faction_Name == "Common Unit"]
-faction_specific_unit_choices <- df$Unit_Name
+all_unit_choices <- df$Unit_Name
 default_unit <- df$Unit_Name[df$Faction_Name == "Common Unit"][1]
 
 # df$Unit_Name
@@ -81,33 +81,35 @@ ui <- navbarPage("Twilight Imperium Resources",
   )
 )
 
-server <- function(input, output, session) {
-  unit_choices <- base_unit_choices  # Set default
 
+server <- function(input, output, session) {
   attacking_unit_count <- reactiveVal(0)
   defending_unit_count <- reactiveVal(0)
 
   observeEvent(input$add_attacker, {
     attacking_unit_count(attacking_unit_count() + 1)
+    unit_choices <- if(input$show_faction_specific) all_unit_choices else base_unit_choices
 
     insertUI(
       selector = "#add_attacker",
       where = "beforeBegin",
-      ui = fluidRow(
-        column(7,
-          selectInput(
-            inputId = paste0("attacker_unit_", attacking_unit_count()),
-            label = "Type",
-            choices = unit_choices,
-            selected = default_unit
-          )
-        ),
-        column(3,
-          numericInput(
-            inputId = paste0("attacker_counter_", attacking_unit_count()),
-            label = "Count",
-            value = 1,
-            min = 1
+      ui = div(class = "attacker_input",
+        fluidRow(
+          column(7,
+            selectInput(
+              inputId = paste0("attacker_unit_", attacking_unit_count()),
+              label = "Type",
+              choices = unit_choices,
+              selected = default_unit
+            )
+          ),
+          column(3,
+            numericInput(
+              inputId = paste0("attacker_counter_", attacking_unit_count()),
+              label = "Count",
+              value = 1,
+              min = 1
+            )
           )
         )
       )
@@ -116,25 +118,28 @@ server <- function(input, output, session) {
 
   observeEvent(input$add_defender, {
     defending_unit_count(defending_unit_count() + 1)
+    unit_choices <- if(input$show_faction_specific) all_unit_choices else base_unit_choices
 
     insertUI(
       selector = "#add_defender",
       where = "beforeBegin",
-      ui = fluidRow(
-        column(7,
-          selectInput(
-            inputId = paste0("defender_unit_", defending_unit_count()),
-            label = "Type",
-            choices = unit_choices,
-            selected = default_unit
-          )
-        ),
-        column(3,
-          numericInput(
-            inputId = paste0("defender_counter_", defending_unit_count()),
-            label = "Count",
-            value = 1,
-            min = 1
+      ui = div(class = "defender_input",
+        fluidRow(
+          column(7,
+            selectInput(
+              inputId = paste0("defender_unit_", defending_unit_count()),
+              label = "Type",
+              choices = unit_choices,
+              selected = default_unit
+            )
+          ),
+          column(3,
+            numericInput(
+              inputId = paste0("defender_counter_", defending_unit_count()),
+              label = "Count",
+              value = 1,
+              min = 1
+            )
           )
         )
       )
@@ -142,7 +147,8 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$clear, {
-    removeUI(selector = "div.form-group.shiny-input-container", multiple = TRUE)
+    removeUI(selector = "div.attacker_input", multiple = TRUE)
+    removeUI(selector = "div.defender_input", multiple = TRUE)
     attacking_unit_count(0)
     defending_unit_count(0)
     updateCheckboxInput(session, "show_faction_specific", value = FALSE)
@@ -184,7 +190,7 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$show_faction_specific, {
-    unit_choices <- if(input$show_faction_specific) faction_specific_unit_choices else base_unit_choices
+    unit_choices <- if(input$show_faction_specific) all_unit_choices else base_unit_choices
 
     # Update Attacker Selection Inputs
     auc <- attacking_unit_count()
