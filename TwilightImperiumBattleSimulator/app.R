@@ -1,19 +1,19 @@
 
 ##################
 # To Do:
-# UI
 # Adjust selection so that previous selections are not available
 # Adjust Reset to go to one Options
 # Add selection option to show faction specific units
-# Force integer conversion within simulate_battles()
-# Remove built in sim from simulate battles
 # Add num rounds selection
+# Add filters to the wiki data
 ##################
+
 
 library(shiny)
 library(reticulate)  # Runs Python Code
 library(this.path)  # Robust Relative Pathing
 library(readr)
+library(DT)
 
 # Temp
 # setwd("TwilightImperiumBattleSimulator")
@@ -26,7 +26,8 @@ source_python("../src/simulate.py")
 
 df <- read_csv("../data/clean/all_units_df.csv")
 
-unit_choices <- df$Unit_Name[df$Faction_Name == "Common Unit"]
+base_unit_choices <- df$Unit_Name[df$Faction_Name == "Common Unit"]
+faction_specific_unit_choices <- df$Unit_Name
 default_unit <- df$Unit_Name[df$Faction_Name == "Common Unit"][1]
 
 # df$Unit_Name
@@ -42,6 +43,7 @@ ui <- navbarPage("Twilight Imperium Resources",
         column(7,
           actionButton("simulate", "Simulate"),
           actionButton("clear", "Reset"),
+          checkboxInput("show_faction_specific", "Show Faction Specific Units", FALSE),
           hr()
         )
       ),
@@ -68,10 +70,20 @@ ui <- navbarPage("Twilight Imperium Resources",
       )
     )
   ),
-  tabPanel("Wiki Data")
+  tabPanel("Wiki Data",
+    fluidPage(
+      fluidRow(
+        column(12,
+          DTOutput("all_units")
+        )
+      )
+    )
+  )
 )
 
 server <- function(input, output, session) {
+  unit_choices <- base_unit_choices  # Set default
+
   attacking_unit_count <- reactiveVal(0)
   defending_unit_count <- reactiveVal(0)
 
@@ -133,6 +145,7 @@ server <- function(input, output, session) {
     removeUI(selector = "div.form-group.shiny-input-container", multiple = TRUE)
     attacking_unit_count(0)
     defending_unit_count(0)
+    updateCheckboxInput(session, "show_faction_specific", value = FALSE)
   })
 
 
@@ -162,6 +175,7 @@ server <- function(input, output, session) {
       attacker_units_dict <- r_to_py(lapply(attackers, as.integer))
       defender_units_dict <- r_to_py(lapply(defenders, as.integer))
 
+      # simulate_battles() is from simulate.py
       sim <- simulate_battles(attacker_units_dict, defender_units_dict)
 
       sim
@@ -169,8 +183,37 @@ server <- function(input, output, session) {
     })
   })
 
+  observeEvent(input$show_faction_specific, {
+    unit_choices <- if(input$show_faction_specific) faction_specific_unit_choices else base_unit_choices
 
+    # Update Attacker Selection Inputs
+    auc <- attacking_unit_count()
+    for (i in seq_len(auc)){
+      selected <- input[[paste0("attacker_unit_", i)]]
+      selection <- if (selected %in% unit_choices) selected else default_unit
+      updateSelectInput(
+        session,
+        inputId = paste0("attacker_unit_", i),
+        choices = unit_choices,
+        selected = selection
+      )
+    }
 
+    # Update Defender Selection Inputs
+    duc <- defending_unit_count()
+    for (i in seq_len(duc)){
+      selected <- input[[paste0("defender_unit_", i)]]
+      selection <- if (selected %in% unit_choices) selected else default_unit
+      updateSelectInput(
+        session,
+        inputId = paste0("defender_unit_", i),
+        choices = unit_choices,
+        selected = selection
+      )
+    }
+  })
+
+  output$all_units <- renderDT(df)
 
 }
 
