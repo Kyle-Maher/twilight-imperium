@@ -1,30 +1,81 @@
-
-##################
+################################################################################
 # To Do:
 # Adjust selection so that previous selections are not available
 # Add num rounds selection
 # Add filters to the wiki data
 # Overall "Draw" calculation incorrect
-##################
+# Fix bug with no units for one group on start
+################################################################################
 
 
 library(shiny)
-library(reticulate)  # Runs Python Code
+library(reticulate)
 library(readr)
 library(DT)
-# library(this.path)  # Robust relative local pathing
 
-# Temp
+# If Running Locally:
 # setwd("TwilightImperiumBattleSimulator")
-# getwd()
-
-
-# Python Environment Setup
+# library(this.path)
 # use_virtualenv(file.path(dirname(this.path()), "..", ".venv"), required = TRUE)
 
-use_python("/opt/python/3.14/bin/python3", required = TRUE)
-source_python("simulate.py")
+packages <- c(
+  "asttokens",
+  "beautifulsoup4",
+  "bs4",
+  "certifi",
+  "charset-normalizer",
+  "colorama",
+  "comm",
+  "debugpy",
+  "decorator",
+  "executing",
+  "idna",
+  "ipykernel",
+  "ipython",
+  "ipython_pygments_lexers",
+  "jedi",
+  "jupyter_client",
+  "jupyter_core",
+  "lxml",
+  "matplotlib-inline",
+  "nest-asyncio",
+  "numpy",
+  "packaging",
+  "pandas",
+  "parso",
+  "platformdirs",
+  "prompt_toolkit",
+  "psutil",
+  "pure_eval",
+  "Pygments",
+  "python-dateutil",
+  "pytz",
+  "pyzmq",
+  "requests",
+  "six",
+  "soupsieve",
+  "stack-data",
+  "tornado",
+  "traitlets",
+  "typing_extensions",
+  "tzdata",
+  "urllib3",
+  "wcwidth"
+)
 
+
+# If publishing:
+reticulate::virtualenv_create(envname = 'python3_env', python = '/usr/bin/python3')
+reticulate::virtualenv_install('python3_env', packages = packages)
+reticulate::use_virtualenv('python3_env', required = T)
+  
+
+# virtualenv_create("r-reticulate")
+# virtualenv_install("r-reticulate", packages = packages)
+# use_virtualenv("r-reticulate", required = TRUE)
+
+
+source_python("simulate.py")
 df <- read_csv("all_units_df.csv")
 
 base_unit_choices <- df$Unit_Name[df$Faction_Name == "Common Unit"]
