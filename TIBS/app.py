@@ -1,5 +1,5 @@
 from simulate import all_units_df, simulate_battles
-from shiny import App, ui, render
+from shiny import App, ui, reactive, render
 import pandas as pd
 
 test_attacking_units = {"Dreadnought": 3, "Infantry": 3}
@@ -7,7 +7,8 @@ test_defending_units = {"Cruiser": 3, "Infantry": 5}
 test_rounds = 100
 
 test_results, test_metadata, test_attacking_stats, test_defending_stats = simulate_battles(test_attacking_units, test_defending_units, test_rounds)
-unit_choices = ["Dreadnought", "Infantry", "Cruiser"]
+unit_choices = all_units_df.index.unique().tolist()
+basic_unit_choices = all_units_df["Unit_Type"].unique().tolist()
 default_unit = "Dreadnought"
 
 app_ui = ui.page_fluid(
@@ -64,39 +65,41 @@ app_ui = ui.page_fluid(
 def server(input, output, session):
 
 
-    # Keep track of how many attacker units have been added
-    attacker_units = []
 
-    @output
-    @render.ui
-    def attacker_inputs():
-        n_clicks = input.add_attacker()
-        if n_clicks > len(attacker_units):
-            attacker_units.append(n_clicks)  # store a placeholder
 
-        # Build a list of UI elements for each added unit
-        ui_elements = []
-        for i, _ in enumerate(attacker_units, start=1):
-            ui_elements.append(
-                ui.div(
-                    {"class": "attacker_input"},
-                    ui.row(
-                        ui.column(7,
-                                  ui.input_select(f"attacker_unit_{i}",
-                                                  "Type",
-                                                  choices=unit_choices,
-                                                  selected=default_unit)
-                        ),
-                        ui.column(3,
-                                  ui.input_numeric(f"attacker_counter_{i}",
-                                                   "Count",
-                                                   value=1,
-                                                   min=1)
-                        )
-                    )
-                )
-            )
-        return ui_elements
+    # @output
+    # @render.ui
+    # def attacker_inputs():
+    #     if input.add_attacker():
+    #         attacker_units.set(attacker_units.get() + 1)
+    #         new_ui_elements = []
+    #         for i in range(attacker_units):
+    #             new_ui_elements.append(
+    #                 ui.div(
+    #                     {"class": "attacker_input"},
+    #                     ui.row(
+    #                         ui.column(
+    #                             6,
+    #                             ui.input_select(
+    #                                 f"attacker_unit_{i}",
+    #                                 "Type",
+    #                                 basic_unit_choices,
+    #                                 default_unit
+    #                             )
+    #                         ),
+    #                         ui.column(
+    #                             2,
+    #                             ui.input_numeric(
+    #                                 f"attacker_count_{i}",
+    #                                 "Count",
+    #                                 vallue = 1,
+    #                                 min = 1
+    #                             )
+    #                         )
+    #                     )
+    #                 )
+    #             )
+    #         return new_ui_elements
 
     @output
     @render.data_frame

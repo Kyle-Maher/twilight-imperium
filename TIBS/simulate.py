@@ -14,7 +14,6 @@ pd.set_option('display.max_columns', None)
 
 
 dtype_dict = {
-    'Unit_Name': str,
     'Faction_Name': str,
     'Unit_Abilities': str,
     'Standard_Abilities': str,
