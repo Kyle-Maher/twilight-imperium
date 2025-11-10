@@ -15,20 +15,12 @@ library(DT)
 
 # If Running Locally:
 # setwd("TwilightImperiumBattleSimulator")
-# library(this.path)
-# use_virtualenv(file.path(dirname(this.path()), "..", ".venv"), required = TRUE)
+use_virtualenv("../.venv", required = TRUE)
 
-packages <- c("pandas", "numpy")
-
-# If publishing:
-# reticulate::virtualenv_create(envname = 'python3_env', python = '/usr/bin/python3')
-# reticulate::virtualenv_install('python3_env', packages = packages)
-# reticulate::use_virtualenv('python3_env', required = T)
-  
-
-virtualenv_create("r-reticulate")
-virtualenv_install("r-reticulate", packages = packages)
-use_virtualenv("r-reticulate", required = TRUE)
+# If Publishing:
+# virtualenv_create("r-reticulate")
+# virtualenv_install("r-reticulate", packages = c("pandas", "numpy"))
+# use_virtualenv("r-reticulate", required = TRUE)
 
 
 source_python("simulate.py")
