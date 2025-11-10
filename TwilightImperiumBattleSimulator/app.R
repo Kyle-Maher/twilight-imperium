@@ -1,29 +1,38 @@
-
-##################
+################################################################################
 # To Do:
 # Adjust selection so that previous selections are not available
 # Add num rounds selection
 # Add filters to the wiki data
 # Overall "Draw" calculation incorrect
-##################
+# Fix bug with no units for one group on start
+################################################################################
 
 
 library(shiny)
-library(reticulate)  # Runs Python Code
-library(this.path)  # Robust Relative Pathing
+library(reticulate)
 library(readr)
 library(DT)
 
-# Temp
+# If Running Locally:
 # setwd("TwilightImperiumBattleSimulator")
-# getwd()
+# library(this.path)
+# use_virtualenv(file.path(dirname(this.path()), "..", ".venv"), required = TRUE)
+
+packages <- c("pandas", "numpy")
+
+# If publishing:
+# reticulate::virtualenv_create(envname = 'python3_env', python = '/usr/bin/python3')
+# reticulate::virtualenv_install('python3_env', packages = packages)
+# reticulate::use_virtualenv('python3_env', required = T)
+  
+
+virtualenv_create("r-reticulate")
+virtualenv_install("r-reticulate", packages = packages)
+use_virtualenv("r-reticulate", required = TRUE)
 
 
-# Python Environment Setup
-use_virtualenv(file.path(dirname(this.path()), "..", ".venv"), required = TRUE)
-source_python("../src/simulate.py")
-
-df <- read_csv("../data/clean/all_units_df.csv")
+source_python("simulate.py")
+df <- read_csv("all_units_df.csv")
 
 base_unit_choices <- df$Unit_Name[df$Faction_Name == "Common Unit"]
 all_unit_choices <- df$Unit_Name
