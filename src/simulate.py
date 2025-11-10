@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# ### Twilight Imperium Battle Simulation
+# #### By Kyle Maher
+# Last revised 11/2025
+
+# In[172]:
 
 
 import pandas as pd
@@ -10,7 +14,7 @@ import numpy as np
 pd.set_option('display.max_columns', None)
 
 
-# In[2]:
+# In[173]:
 
 
 dtype_dict = {
@@ -46,7 +50,7 @@ all_units_df = pd.read_csv('../data/clean/all_units_df.csv', index_col='Unit_Nam
 
 # ### Functions
 
-# In[3]:
+# In[174]:
 
 
 # Split Units into Ships and Ground Forces
@@ -66,10 +70,10 @@ def split_units(units):
     return ships, ground_forces
 
 
-# In[4]:
+# In[175]:
 
 
-# Find Combat Values
+# Determine combat and ability values for each unit
 
 def get_unit_stats(faction_units):
     faction_unit_stats = []
@@ -109,13 +113,13 @@ def get_unit_stats(faction_units):
             }
             faction_unit_stats.append(unit_stats)
 
-    # Sort the units
+    # Sort the units (ensures worse units are removed first)
     faction_unit_stats.sort(key=lambda x: (x['Has_Sustain_Damage'], x['Unit_Combat_Value'], -x['Shots']), reverse=True)
 
     return faction_unit_stats
 
 
-# In[5]:
+# In[176]:
 
 
 # Determine Anti Fighter Barrage Hits
@@ -131,7 +135,7 @@ def get_anti_fighter_hits(faction_units):
     return hits
 
 
-# In[6]:
+# In[177]:
 
 
 # Determine Hits
@@ -146,7 +150,7 @@ def get_hits(faction_units):
     return hits
 
 
-# In[7]:
+# In[178]:
 
 
 # Assign Hits
@@ -155,13 +159,15 @@ def assign_hits(hits, faction_units):
     while hits > 0 and faction_units:
         if faction_units[0]['Has_Sustain_Damage']:
             faction_units[0]['Has_Sustain_Damage'] = False
+
+            # Sort to remove worse units first
             faction_units.sort(key = lambda x: (x['Has_Sustain_Damage'], x['Unit_Combat_Value'], -x['Shots']), reverse=True)
         else:
             faction_units.remove(faction_units[0])
         hits -= 1
 
 
-# In[8]:
+# In[179]:
 
 
 # Determine Bombardment Hits
@@ -179,7 +185,7 @@ def get_bombardment_hits(faction_units):
 
 # ### Simulate Battles
 
-# In[9]:
+# In[180]:
 
 
 # For the purpose of this simulation faction_A is the attacker and faction_B is the defender
@@ -189,10 +195,6 @@ def get_bombardment_hits(faction_units):
 # Account for Space Cannon
 
 def simulate_battles(attacker_units, defender_units, rounds = 100):
-
-    # Ensure Integer Inputs
-    attacker_units = dict((k, int(v)) for k, v in attacker_units.items())
-    attacker_units = dict((k, int(v)) for k, v in defender_units.items())
 
     faction_A_space_wins, faction_B_space_wins, space_draws = 0, 0, 0
     faction_A_ground_wins, faction_B_ground_wins, ground_draws = 0, 0, 0
@@ -218,7 +220,7 @@ def simulate_battles(attacker_units, defender_units, rounds = 100):
         faction_A_unit_stats = pd.concat([pd.DataFrame(faction_A_ships), pd.DataFrame(faction_A_ground_forces)]).reset_index(drop=True)
         faction_B_unit_stats = pd.concat([pd.DataFrame(faction_B_ships), pd.DataFrame(faction_B_ground_forces)]).reset_index(drop=True)
 
-        # Conduct Space Cannon (in progress)
+        # Conduct Space Cannon Step(in progress)
 
 
         # ANTI FIGHTER BARRAGE
@@ -296,19 +298,16 @@ def simulate_battles(attacker_units, defender_units, rounds = 100):
     divisors = pd.Series([total_space_games, total_ground_games if total_ground_games > 0 else 1], index=df.index)
     df = df.div(divisors, axis=0)
 
+    # P(Faction A winning Space) + P(Faction A winning Ground | Faction A won Space)
     faction_A_wins_both = df.loc['Space Percentages', 'Faction A wins'] * df.loc['Ground Percentages', 'Faction A wins']
+    # P(Faction B winning Space) + P(Faction B winning Ground | Faction A won Space)
     faction_B_wins_either = df.loc['Space Percentages', 'Faction B wins'] + (df.loc['Space Percentages', 'Faction A wins'] * df.loc['Ground Percentages', 'Faction B wins'])
-    draw_either = df.loc['Space Percentages', 'Draw'] + df.loc['Ground Percentages', 'Draw']
+    # P(Draw in Space) + P(Draw on Ground | Faction A won Space)
+    draw_either = df.loc['Space Percentages', 'Draw'] + (df.loc['Space Percentages', 'Faction A wins'] * df.loc['Ground Percentages', 'Draw'])
+
     df.loc['Overall Percentages'] = {'Faction A wins': faction_A_wins_both, 'Faction B wins': faction_B_wins_either, 'Draw': draw_either}
     df = df * 100
-
-
-    # Results:
-
-    # print(f'Average Number of Space Rounds: {average_num_space_rounds:.2f}')
-    # print(f'Average Number of Ground Rounds: {average_num_ground_rounds:.2f}')
-    # print(f'Number of Space Games Ran: {total_space_games}')
-    # print(f'Number of Ground Games Ran: {total_ground_games}')
+    df = df.rename(columns = {"Faction A wins": "Attacker Wins", "Faction B wins": "Defender Wins"})
 
     return (df.round(1), combat_metadata.round(1), faction_A_unit_stats, faction_B_unit_stats)
 
