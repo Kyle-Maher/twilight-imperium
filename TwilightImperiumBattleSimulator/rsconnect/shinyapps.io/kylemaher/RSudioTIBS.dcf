@@ -1,0 +1,12 @@
+name: RSudioTIBS
+title: RSudioTIBS
+username: kylemaher
+account: kylemaher
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 16022296
+bundleId: 11158998
+url: https://kylemaher.shinyapps.io/RSudioTIBS/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

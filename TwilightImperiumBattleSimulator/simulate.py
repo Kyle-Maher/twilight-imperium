@@ -41,7 +41,7 @@ dtype_dict = {
     'Space_Cannon_Shots': int
 }
 
-all_units_df = pd.read_csv('../data/clean/all_units_df.csv', index_col='Unit_Name', dtype=dtype_dict)
+all_units_df = pd.read_csv('all_units_df.csv', index_col='Unit_Name', dtype=dtype_dict)
 
 
 # ### Functions
