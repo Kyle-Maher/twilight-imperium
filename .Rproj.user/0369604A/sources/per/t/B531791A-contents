@@ -10,9 +10,9 @@
 
 library(shiny)
 library(reticulate)  # Runs Python Code
-library(this.path)  # Robust Relative Pathing
 library(readr)
 library(DT)
+# library(this.path)  # Robust relative local pathing
 
 # Temp
 # setwd("TwilightImperiumBattleSimulator")
@@ -20,10 +20,12 @@ library(DT)
 
 
 # Python Environment Setup
-use_virtualenv(file.path(dirname(this.path()), "..", ".venv"), required = TRUE)
-source_python("../src/simulate.py")
+# use_virtualenv(file.path(dirname(this.path()), "..", ".venv"), required = TRUE)
 
-df <- read_csv("../data/clean/all_units_df.csv")
+use_python("/opt/python/3.14/bin/python3", required = TRUE)
+source_python("simulate.py")
+
+df <- read_csv("all_units_df.csv")
 
 base_unit_choices <- df$Unit_Name[df$Faction_Name == "Common Unit"]
 all_unit_choices <- df$Unit_Name
