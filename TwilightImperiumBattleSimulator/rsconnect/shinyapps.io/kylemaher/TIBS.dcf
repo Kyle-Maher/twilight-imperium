@@ -1,0 +1,13 @@
+name: TIBS
+title: TIBS
+username: kylemaher
+account: kylemaher
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 16023347
+bundleId: 11159361
+url: https://kylemaher.shinyapps.io/TIBS/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .python-version|.RData|requirements.txt
