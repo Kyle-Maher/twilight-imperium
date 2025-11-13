@@ -103,3 +103,4 @@ Reclaimer,The Winnu,"After you resolve a tactical action where you gained contro
 Indomitus,The Xxcha Kingdom,You may use this unit's SPACE CANNON against ships that are in adjacent systems.,Space Cannon 8,True,2,6,6,1,,,Mechs,False,True,2,0,0,False,0,0,False,0,0,True,0,1
 Moyin's ashes,The Yin Brotherhood,"DEPLOY: When you use your INDOCTRINATION faction ability, you may spend 1 additional influence to replace your opponent's unit with 1 mech instead of 1 infantry.",,True,2,6,6,1,,,Mechs,False,True,2,0,0,False,0,0,False,0,0,False,0,0
 Blackshade Infiltrator,The Yssaril Tribes,"DEPLOY: After you use your STALL TACTICS faction ability, you may place 1 mech on a planet you control.",,True,2,6,6,1,,,Mechs,False,True,2,0,0,False,0,0,False,0,0,False,0,0
+Mech,Common Unit,,,True,2,6,6,1,,,Mechs,False,True,2,0,0,False,0,0,False,0,0,False,0,0

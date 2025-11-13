@@ -3,6 +3,7 @@
 # Adjust unit selection so that previous selections are not available
 # Add filters to the wiki data
 # Fix anti fighter not caring if it removes non-fighters (whoops)
+# Add Loading Bar
 ################################################################################
 
 
@@ -21,19 +22,8 @@ virtualenv_create("r-reticulate")
 virtualenv_install("r-reticulate", packages = c("pandas", "numpy"))
 use_virtualenv("r-reticulate", required = TRUE)
 
-
 source_python("simulate.py")
 df <- read_csv("all_units_df.csv")
-
-common_mech <- df %>%
-  filter(Unit_Name == "Aerie Sentinel") %>%
-  mutate(
-    Faction_Name = "Common Unit",
-    Unit_Name = "Mech"
-  ) %>%
-  select(-Unit_Abilities)
-
-df <- bind_rows(df, common_mech)
 
 base_unit_choices <- df$Unit_Name[df$Faction_Name == "Common Unit"]
 all_unit_choices <- df$Unit_Name
