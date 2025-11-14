@@ -5,7 +5,7 @@
 # #### By Kyle Maher
 # Last revised 11/2025
 
-# In[172]:
+# In[38]:
 
 
 import pandas as pd
@@ -14,7 +14,7 @@ import numpy as np
 pd.set_option('display.max_columns', None)
 
 
-# In[173]:
+# In[39]:
 
 
 dtype_dict = {
@@ -50,7 +50,7 @@ all_units_df = pd.read_csv('../data/clean/all_units_df.csv', index_col='Unit_Nam
 
 # ### Functions
 
-# In[174]:
+# In[40]:
 
 
 # Split Units into Ships and Ground Forces
@@ -70,7 +70,7 @@ def split_units(units):
     return ships, ground_forces
 
 
-# In[175]:
+# In[41]:
 
 
 # Determine combat and ability values for each unit
@@ -81,6 +81,7 @@ def get_unit_stats(faction_units):
         number_units = faction_units[unit]
         for i in range(number_units):
             name = unit
+            unit_type = all_units_df.loc[unit]['Unit_Type']
             unit_combat_value = int(all_units_df.loc[unit]['Combat_Value'])
             has_sustain_damage = all_units_df.loc[unit]['Has_Sustain_Damage']
             shots = all_units_df.loc[unit]['Shots']
@@ -98,6 +99,7 @@ def get_unit_stats(faction_units):
 
             unit_stats = {
                 'Name': name,
+                'Unit_Type': unit_type,
                 'Unit_Combat_Value': unit_combat_value,
                 'Shots': shots,
                 'Has_Sustain_Damage': has_sustain_damage,
@@ -119,7 +121,7 @@ def get_unit_stats(faction_units):
     return faction_unit_stats
 
 
-# In[176]:
+# In[42]:
 
 
 # Determine Anti Fighter Barrage Hits
@@ -135,7 +137,20 @@ def get_anti_fighter_hits(faction_units):
     return hits
 
 
-# In[177]:
+# In[43]:
+
+
+# Assign Anti Fighter Hits
+
+def assign_anti_fighter_hits(hits, faction_units):
+    fighters = [unit for unit in faction_units if unit["Unit_Type"] == "Fighter"]
+    while hits > 0 and fighters:
+        fighters.remove(fighters[0])
+        faction_units.remove(fighters[0])
+        hits -= 1
+
+
+# In[44]:
 
 
 # Determine Hits
@@ -150,7 +165,7 @@ def get_hits(faction_units):
     return hits
 
 
-# In[178]:
+# In[45]:
 
 
 # Assign Hits
@@ -167,7 +182,7 @@ def assign_hits(hits, faction_units):
         hits -= 1
 
 
-# In[179]:
+# In[46]:
 
 
 # Determine Bombardment Hits
@@ -185,7 +200,7 @@ def get_bombardment_hits(faction_units):
 
 # ### Simulate Battles
 
-# In[180]:
+# In[47]:
 
 
 # For the purpose of this simulation faction_A is the attacker and faction_B is the defender
@@ -228,8 +243,8 @@ def simulate_battles(attacker_units, defender_units, rounds = 100):
         faction_A_hits = get_anti_fighter_hits(faction_A_ships)
         faction_B_hits = get_anti_fighter_hits(faction_B_ships)
         # Assign Hits
-        assign_hits(faction_A_hits, faction_B_ships)
-        assign_hits(faction_B_hits, faction_A_ships)    
+        assign_anti_fighter_hits(faction_A_hits, faction_B_ships)
+        assign_anti_fighter_hits(faction_B_hits, faction_A_ships)    
 
 
         space_round_count = 0
@@ -315,10 +330,10 @@ def simulate_battles(attacker_units, defender_units, rounds = 100):
 # In[ ]:
 
 
-# a = {'Dreadnought':3, 'Infantry':1}
-# d = {'Cruiser':5, 'Infantry':2}
+# a = {'Destroyer II':5, 'Infantry':1}
+# d = {'Cruiser':5, 'Infantry':1}
 
-# results, metadata, attacker_stats, defender_stats = simulate_battles(a, d, 100)
+# results, metadata, attacker_stats, defender_stats = simulate_battles(a, d, 1000)
 
 
 # In[ ]:
@@ -327,19 +342,19 @@ def simulate_battles(attacker_units, defender_units, rounds = 100):
 # results
 
 
-# In[ ]:
+# In[50]:
 
 
 # metadata
 
 
-# In[ ]:
+# In[51]:
 
 
 # attacker_stats
 
 
-# In[ ]:
+# In[52]:
 
 
 # defender_stats
