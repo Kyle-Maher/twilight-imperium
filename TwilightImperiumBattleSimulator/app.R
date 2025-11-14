@@ -2,8 +2,9 @@
 # To Do:
 # Adjust unit selection so that previous selections are not available
 # Add filters to the wiki data
-# Fix anti fighter not caring if it removes non-fighters (whoops)
 # Add Loading Bar
+# Add Capacity Considerations
+# Add Space Cannon Units and Combat Steps
 ################################################################################
 
 
