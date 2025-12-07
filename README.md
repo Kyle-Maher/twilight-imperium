@@ -18,7 +18,7 @@ Contains simulate_battles() which runs the Monte Carlo simulation returning the 
 
 ## simulate.py
 
-Created from simulate.ipynb using "jupyter nbconvert --to script simulate.ipynb".
+Created from simulate.ipynb using "jupyter nbconvert --to script simulate.ipynb --TemplateExporter.exclude_input_prompt=True".
 
 ## app.R
 
