@@ -5,7 +5,7 @@
 # #### By Kyle Maher
 # Last revised 11/2025
 
-# In[38]:
+# In[17]:
 
 
 import pandas as pd
@@ -14,7 +14,7 @@ import numpy as np
 pd.set_option('display.max_columns', None)
 
 
-# In[39]:
+# In[18]:
 
 
 dtype_dict = {
@@ -50,7 +50,7 @@ all_units_df = pd.read_csv('../data/clean/all_units_df.csv', index_col='Unit_Nam
 
 # ### Functions
 
-# In[40]:
+# In[19]:
 
 
 # Split Units into Ships and Ground Forces
@@ -66,11 +66,11 @@ def split_units(units):
             ground_forces[unit] = value
         else:
             print(f"Warning! Unit: {unit} not found!")
-
+            
     return ships, ground_forces
 
 
-# In[41]:
+# In[20]:
 
 
 # Determine combat and ability values for each unit
@@ -85,7 +85,7 @@ def get_unit_stats(faction_units):
             unit_combat_value = int(all_units_df.loc[unit]['Combat_Value'])
             has_sustain_damage = all_units_df.loc[unit]['Has_Sustain_Damage']
             shots = all_units_df.loc[unit]['Shots']
-
+            
             # New Parameters
             anti_fighter_value = all_units_df.loc[unit]['Anti_Fighter_Value'] if 'Anti_Fighter_Value' in all_units_df.columns else None
             anti_fighter_shots = all_units_df.loc[unit]['Anti_Fighter_Shots'] if 'Anti_Fighter_Shots' in all_units_df.columns else None
@@ -117,11 +117,11 @@ def get_unit_stats(faction_units):
 
     # Sort the units (ensures worse units are removed first)
     faction_unit_stats.sort(key=lambda x: (x['Has_Sustain_Damage'], x['Unit_Combat_Value'], -x['Shots']), reverse=True)
-
+    
     return faction_unit_stats
 
 
-# In[42]:
+# In[21]:
 
 
 # Determine Anti Fighter Barrage Hits
@@ -137,7 +137,7 @@ def get_anti_fighter_hits(faction_units):
     return hits
 
 
-# In[43]:
+# In[22]:
 
 
 # Assign Anti Fighter Hits
@@ -150,7 +150,7 @@ def assign_anti_fighter_hits(hits, faction_units):
         hits -= 1
 
 
-# In[44]:
+# In[23]:
 
 
 # Determine Hits
@@ -165,7 +165,7 @@ def get_hits(faction_units):
     return hits
 
 
-# In[45]:
+# In[24]:
 
 
 # Assign Hits
@@ -174,7 +174,7 @@ def assign_hits(hits, faction_units):
     while hits > 0 and faction_units:
         if faction_units[0]['Has_Sustain_Damage']:
             faction_units[0]['Has_Sustain_Damage'] = False
-
+            
             # Sort to remove worse units first
             faction_units.sort(key = lambda x: (x['Has_Sustain_Damage'], x['Unit_Combat_Value'], -x['Shots']), reverse=True)
         else:
@@ -182,7 +182,7 @@ def assign_hits(hits, faction_units):
         hits -= 1
 
 
-# In[46]:
+# In[25]:
 
 
 # Determine Bombardment Hits
@@ -200,7 +200,7 @@ def get_bombardment_hits(faction_units):
 
 # ### Simulate Battles
 
-# In[47]:
+# In[26]:
 
 
 # For the purpose of this simulation faction_A is the attacker and faction_B is the defender
@@ -258,7 +258,7 @@ def simulate_battles(attacker_units, defender_units, rounds = 100):
             assign_hits(faction_B_hits, faction_A_ships)
 
             space_round_count += 1
-
+        
         space_round_counts.append(space_round_count)
 
         if faction_A_ships:
@@ -281,7 +281,7 @@ def simulate_battles(attacker_units, defender_units, rounds = 100):
                 assign_hits(faction_B_hits, faction_A_ground_forces)
 
                 ground_round_count += 1
-
+            
             ground_round_counts.append(ground_round_count)
 
             if faction_A_ground_forces:
@@ -302,9 +302,11 @@ def simulate_battles(attacker_units, defender_units, rounds = 100):
     total_space_games = faction_A_space_wins + faction_B_space_wins + space_draws
     total_ground_games = faction_A_ground_wins + faction_B_ground_wins + ground_draws
 
-    combat_metadata = pd.DataFrame([{'Average Rounds': average_num_space_rounds, 'Combats Simulated': total_space_games},
-                                    {'Average Rounds': average_num_ground_rounds, 'Combats Simulated': total_ground_games}],
-                                    index = ['Space', 'Ground'])
+    combat_metadata = pd.DataFrame(
+        [{'Attacker Wins': faction_A_space_wins, 'Defender Wins': faction_B_space_wins, 'Draws': space_draws, 'Average Rounds': average_num_space_rounds, 'Combats Simulated': total_space_games},
+         {'Attacker Wins': faction_A_ground_wins, 'Defender Wins': faction_B_ground_wins, 'Draws': ground_draws, 'Average Rounds': average_num_ground_rounds, 'Combats Simulated': total_ground_games}],
+        index = ['Space', 'Ground']
+    )
 
     df = pd.DataFrame([{'Faction A wins': faction_A_space_wins, 'Faction B wins': faction_B_space_wins, 'Draw': space_draws},
                     {'Faction A wins': faction_A_ground_wins, 'Faction B wins': faction_B_ground_wins, 'Draw': ground_draws}],
@@ -336,25 +338,25 @@ def simulate_battles(attacker_units, defender_units, rounds = 100):
 # results, metadata, attacker_stats, defender_stats = simulate_battles(a, d, 1000)
 
 
-# In[ ]:
+# In[28]:
 
 
 # results
 
 
-# In[50]:
+# In[ ]:
 
 
 # metadata
 
 
-# In[51]:
+# In[30]:
 
 
 # attacker_stats
 
 
-# In[52]:
+# In[31]:
 
 
 # defender_stats
