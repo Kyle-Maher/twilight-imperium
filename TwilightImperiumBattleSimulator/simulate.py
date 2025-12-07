@@ -5,16 +5,10 @@
 # #### By Kyle Maher
 # Last revised 11/2025
 
-# In[102]:
-
-
 import pandas as pd
 import numpy as np
 
 pd.set_option('display.max_columns', None)
-
-
-# In[103]:
 
 
 dtype_dict = {
@@ -45,14 +39,11 @@ dtype_dict = {
     'Space_Cannon_Shots': int
 }
 
-# IMPORTANT: Path changed to work with app.
+# IMPORTANT: Path changed to work with app
 all_units_df = pd.read_csv('all_units_df.csv', index_col='Unit_Name', dtype=dtype_dict)
 
 
 # ### Functions
-
-# In[104]:
-
 
 # Split Units into Ships and Ground Forces
 
@@ -69,9 +60,6 @@ def split_units(units):
             print(f"Warning! Unit: {unit} not found!")
             
     return ships, ground_forces
-
-
-# In[105]:
 
 
 # Determine combat and ability values for each unit
@@ -122,9 +110,6 @@ def get_unit_stats(faction_units):
     return faction_unit_stats
 
 
-# In[106]:
-
-
 # Determine Anti Fighter Barrage Hits
 
 def get_anti_fighter_hits(faction_units):
@@ -138,9 +123,6 @@ def get_anti_fighter_hits(faction_units):
     return hits
 
 
-# In[107]:
-
-
 # Assign Anti Fighter Hits
 
 def assign_anti_fighter_hits(hits, faction_units):
@@ -149,9 +131,6 @@ def assign_anti_fighter_hits(hits, faction_units):
         faction_units.remove(fighters[0])
         fighters.remove(fighters[0])
         hits -= 1
-
-
-# In[108]:
 
 
 # Determine Hits
@@ -164,9 +143,6 @@ def get_hits(faction_units):
             if roll >= unit['Unit_Combat_Value']:
                 hits += 1
     return hits
-
-
-# In[109]:
 
 
 # Assign Hits
@@ -183,9 +159,6 @@ def assign_hits(hits, faction_units):
         hits -= 1
 
 
-# In[110]:
-
-
 # Determine Bombardment Hits
 
 def get_bombardment_hits(faction_units):
@@ -200,9 +173,6 @@ def get_bombardment_hits(faction_units):
 
 
 # ### Simulate Battles
-
-# In[111]:
-
 
 # For the purpose of this simulation faction_A is the attacker and faction_B is the defender
 # If faction_B wins there is no ground combat.
@@ -330,34 +300,19 @@ def simulate_battles(attacker_units, defender_units, rounds = 100):
     return (df.round(1), combat_metadata.round(1), faction_A_unit_stats, faction_B_unit_stats)
 
 
-# In[112]:
-
-
 # a = {'Destroyer II':5, 'Infantry':1}
 # d = {'Cruiser':5, 'Infantry':1}
 
 # results, metadata, attacker_stats, defender_stats = simulate_battles(a, d, 1000)
 
 
-# In[113]:
-
-
 # results
-
-
-# In[114]:
 
 
 # metadata
 
 
-# In[115]:
-
-
 # attacker_stats
-
-
-# In[116]:
 
 
 # defender_stats
