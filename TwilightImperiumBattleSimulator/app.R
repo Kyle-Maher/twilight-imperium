@@ -8,11 +8,12 @@
 ################################################################################
 
 
-library(shiny)
-library(reticulate)
-library(readr)
-library(DT)
-library(dplyr)
+library(shiny) # Shiny App
+library(reticulate) # Runing Python Code
+library(readr) # Read CSV
+library(DT) # Table Renders
+library(dplyr) # DataFrame manipulaitons
+library(binom) # Confidence Intervals
 
 # If Running Locally:
 # setwd("TwilightImperiumBattleSimulator")
@@ -64,7 +65,8 @@ ui <- navbarPage("Twilight Imperium",
             DTOutput("results")
           ),
           column(6,
-            DTOutput("metadata")
+            DTOutput("metadata"),
+            DTOutput("ci")
           ),
           br(),
           DTOutput("attacker_stats"),
@@ -291,6 +293,65 @@ server <- function(input, output, session) {
     output$metadata <- renderDT(metadata, options = list(dom = "t"))
     output$attacker_stats <- renderDT(attacker_stats, options = list(dom = "t"))
     output$defender_stats <- renderDT(defender_stats, options = list(dom = "t"))
+
+    # Compute Confidence Intervals
+
+  # Bonferroni-adjusted Confidence Level
+  alpha <- 0.05 / 3
+  level = 1 - alpha
+
+  # Wilson Confidence Interval Bounds
+  get_wilson_ci <- function(k, n, conf.level = level) {
+    ci <- binom.confint(k, n, conf.level = level, methods = "wilson")
+    return(c(lower = ci$lower, upper = ci$upper))
+  }
+
+  metadata_ci <- metadata %>%
+    rename(
+      "Attacker_Wins" = "Attacker Wins",
+      "Defender_Wins" = "Defender Wins",
+      "Combats_Simulated" = "Combats Simulated"
+    ) %>%
+    rowwise() %>%
+    mutate(
+      ci_attacker = list(get_wilson_ci(Attacker_Wins, Combats_Simulated)),
+      lwr_attacker = ci_attacker[["lower"]],
+      upr_attacker = ci_attacker[["upper"]],
+      
+      ci_defender = list(get_wilson_ci(Defender_Wins, Combats_Simulated)),
+      lwr_defender = ci_defender[["lower"]],
+      upr_defender = ci_defender[["upper"]],
+      
+      ci_draw = list(get_wilson_ci(Draws, Combats_Simulated)),
+      lwr_draw = ci_draw[["lower"]],
+      upr_draw = ci_draw[["upper"]]
+    ) %>%
+    ungroup() %>%
+    select(Combats_Simulated,
+          lwr_attacker, upr_attacker,
+          lwr_defender, upr_defender,
+          lwr_draw, upr_draw) %>%
+    round(2)
+
+  ci <- metadata_ci %>%
+    mutate(
+      "Combat Type" = c("Space", "Ground")
+    ) %>%
+    rowwise() %>%
+    mutate(
+      "Attacker CI" = paste(lwr_attacker, "-", upr_attacker),
+      "Defender CI" = paste(lwr_defender, "-", upr_defender),
+      "Draw CI" = paste(lwr_draw, "-", upr_draw),
+    ) %>%
+    select(
+      "Combat Type",
+      "Attacker CI",
+      "Defender CI",
+      "Draw CI"
+    )
+  output$ci <- renderDT(ci, options = list(dom = "t"))
+
+
   })
 
 
