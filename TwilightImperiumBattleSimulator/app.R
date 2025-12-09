@@ -43,7 +43,7 @@ ui <- navbarPage("Twilight Imperium",
           div(
             h3(" ")
           ),
-          sliderInput("rounds", "Battles to Simulate", 100, 10000, 500, step = 100, ticks = FALSE),
+          sliderInput("rounds", "Battles to Simulate", 100, 2000, 500, step = 100, ticks = FALSE),
           checkboxInput("show_faction_specific", "Show Faction Specific Units", FALSE),
           hr(),
           h4("Attacker's Units"),
