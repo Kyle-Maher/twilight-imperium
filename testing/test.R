@@ -26,7 +26,17 @@ defender_units_dict <- r_to_py(lapply(defenders, as.integer))
 # Call simulate_battles() from simulate.py
 sim <- simulate_battles(attacker_units_dict, defender_units_dict, rounds)
 
-results <- sim[[1]]
+results <- sim[[1]] %>%
+  mutate(
+    "Combat Type" = c("Space", "Ground", "Overall")
+  ) %>%
+  select(
+    "Combat Type",
+    "Attacker Wins",
+    "Defender Wins",
+    "Draw"
+  )
+
 metadata <- sim[[2]]
 attacker_stats <- sim[[3]] %>%
   select(-Has_Anti_Fighter, -Has_Bombardment, -Has_Space_Cannon) %>% 

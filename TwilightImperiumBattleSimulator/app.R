@@ -85,12 +85,18 @@ ui <- navbarPage("Twilight Imperium",
       )
     )
   ),
-  tabPanel("info",
+  tabPanel("Info",
     fluidPage(
       fluidRow(
         column(12,
           h3("Data:"),
-          h4("https://twilight-imperium.fandom.com/wiki/Twilight_Imperium_Wiki"),
+          h4(
+            tags$a(
+              href = "https://twilight-imperium.fandom.com/wiki/Twilight_Imperium_Wiki",
+              "Twilight Imperium Wiki",
+              target = "_blank"   # open link in new tab
+            )
+          ),
           h3("Created by:"),
           h4("Kyle Maher")
         )
@@ -103,6 +109,18 @@ ui <- navbarPage("Twilight Imperium",
 server <- function(input, output, session) {
 
   # Functions
+  format_table_output <- function(table, table_name) {
+    formatted_table <- datatable(
+      table,
+      rownames = FALSE,
+      options = list(dom = "t"),
+      caption = htmltools::tags$caption(
+        style = 'caption-side: top; text-align: left; font-weight: bold; font-size: 16px;',
+        table_name
+      )
+    )
+    return(formatted_table)
+  }
 
   add_attacker <- function() {
     attacking_unit_count(attacking_unit_count() + 1)
@@ -113,7 +131,7 @@ server <- function(input, output, session) {
       where = "beforeBegin",
       ui = div(class = "attacker_input",
         fluidRow(
-          column(7,
+          column(5,
             style = "padding-right:5px;",   # reduce right padding
             selectInput(
               inputId = paste0("attacker_unit_", attacking_unit_count()),
@@ -122,7 +140,7 @@ server <- function(input, output, session) {
               selected = default_unit
             )
           ),
-          column(3,
+          column(2,
             style = "padding-left:5px;",    # reduce left padding
             numericInput(
               inputId = paste0("attacker_counter_", attacking_unit_count()),
@@ -130,7 +148,8 @@ server <- function(input, output, session) {
               value = 1,
               min = 1
             )
-          )
+          ),
+          column(3), # Spacer
         )
       )
     )
@@ -145,7 +164,7 @@ server <- function(input, output, session) {
       where = "beforeBegin",
       ui = div(class = "defender_input",
         fluidRow(
-          column(7,
+          column(5,
             style = "padding-right:5px;",   # reduce right padding
             selectInput(
               inputId = paste0("defender_unit_", defending_unit_count()),
@@ -154,7 +173,7 @@ server <- function(input, output, session) {
               selected = default_unit
             )
           ),
-          column(3,
+          column(2,
             style = "padding-left:5px;",    # reduce left padding
             numericInput(
               inputId = paste0("defender_counter_", defending_unit_count()),
@@ -162,7 +181,8 @@ server <- function(input, output, session) {
               value = 1,
               min = 1
             )
-          )
+          ),
+          column(3), # Spacer
         )
       )
     )
@@ -284,18 +304,48 @@ server <- function(input, output, session) {
     # Call simulate_battles() from simulate.py
     sim <- simulate_battles(attacker_units_dict, defender_units_dict, input$rounds)
 
-    results <- sim[[1]]
-    metadata <- sim[[2]]
+    results <- sim[[1]] %>%
+      mutate(
+        "Combat Type" = c("Space", "Ground", "Overall")
+      ) %>%
+      select(
+        "Combat Type",
+        "Attacker Wins",
+        "Defender Wins",
+        "Draw"
+      )
+
+    metadata <- sim[[2]] %>%
+      mutate(
+        "Combat Type" = c("Space", "Ground")
+      ) %>%
+      select(
+        "Combat Type",
+        "Attacker Wins",
+        "Defender Wins",
+        "Draws",
+        "Average Rounds",
+        "Combats Simulated"
+      )
+
     attacker_stats <- sim[[3]] %>%
       select(-Has_Anti_Fighter, -Has_Bombardment, -Has_Space_Cannon) %>%
-      select(where(~ !all(.x == 0)))  # Remove Columns will all zeros
+      select(where(~ !all(.x == 0))) %>%  # Remove Columns will all zeros
+      rename(
+        "Combat Value" = "Unit_Combat_Value",
+        "Type" = "Unit_Type"
+      )
     defender_stats <- sim[[4]] %>%
       select(-Has_Anti_Fighter, -Has_Bombardment, -Has_Space_Cannon) %>%
-      select(where(~ !all(.x == 0)))  # Remove Columns will all zeros
+      select(where(~ !all(.x == 0))) %>%  # Remove Columns will all zeros
+      rename(
+        "Combat Value" = "Unit_Combat_Value",
+        "Type" = "Unit_Type"
+      )
 
-    output$metadata <- renderDT(metadata, options = list(dom = "t"))
-    output$attacker_stats <- renderDT(attacker_stats, options = list(dom = "t"))
-    output$defender_stats <- renderDT(defender_stats, options = list(dom = "t"))
+    output$metadata <- renderDT(format_table_output(metadata, "Battles Simulated:"))
+    output$attacker_stats <- renderDT(format_table_output(attacker_stats, "Attacker Unit Stats:"))
+    output$defender_stats <- renderDT(format_table_output(defender_stats, "Defender Unit Stats:"))
 
     # Compute Confidence Intervals
 
@@ -342,20 +392,20 @@ server <- function(input, output, session) {
       ) %>%
       rowwise() %>%
       mutate(
-        "Attacker CI" = paste(lwr_attacker, "-", upr_attacker),
-        "Defender CI" = paste(lwr_defender, "-", upr_defender),
-        "Draw CI" = paste(lwr_draw, "-", upr_draw),
+        "Attacker 95% CI" = paste(lwr_attacker, "-", upr_attacker),
+        "Defender 95% CI" = paste(lwr_defender, "-", upr_defender),
+        "Draw 95% CI" = paste(lwr_draw, "-", upr_draw),
       ) %>%
       select(
         "Combat Type",
-        "Attacker CI",
-        "Defender CI",
-        "Draw CI"
+        "Attacker 95% CI",
+        "Defender 95% CI",
+        "Draw 95% CI"
       )
-    output$ci <- renderDT(ci, options = list(dom = "t"))
+
+    output$ci <- renderDT({format_table_output(ci, "Confidence Intervals:")})
 
     # Plot Outputs
-
     results_long <- results %>%
       mutate("Combat Type" = c("Space", "Ground", "Overall")) %>%
       pivot_longer(
@@ -397,15 +447,16 @@ server <- function(input, output, session) {
             fill = `Battle Result`
           )
         ) +
+        # Percentage Labels
         geom_text(
           aes(
             x = 3.5,
             y = label_pos,
             label = label
           ),
-          size = 3.5,
-          color = "white",
-          fontface = "bold"
+          size = 5.5,
+          color = "black"
+          # fontface = "bold"
         ) +
         scale_fill_manual(values = colors) +
         coord_polar(theta = "y") +
@@ -413,10 +464,11 @@ server <- function(input, output, session) {
         theme_void() +
         theme(
           legend.title = element_blank(),
+          legend.text = element_text(size = 14),
           legend.position = "right",
           # Facet Wrap Label Size
           strip.text = element_text(
-            size = 14,
+            size = 16,
             face = "bold"
           )
         ) +
