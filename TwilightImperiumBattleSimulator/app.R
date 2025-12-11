@@ -114,6 +114,7 @@ server <- function(input, output, session) {
       ui = div(class = "attacker_input",
         fluidRow(
           column(7,
+            style = "padding-right:5px;",   # reduce right padding
             selectInput(
               inputId = paste0("attacker_unit_", attacking_unit_count()),
               label = "Type",
@@ -122,6 +123,7 @@ server <- function(input, output, session) {
             )
           ),
           column(3,
+            style = "padding-left:5px;",    # reduce left padding
             numericInput(
               inputId = paste0("attacker_counter_", attacking_unit_count()),
               label = "Count",
@@ -144,6 +146,7 @@ server <- function(input, output, session) {
       ui = div(class = "defender_input",
         fluidRow(
           column(7,
+            style = "padding-right:5px;",   # reduce right padding
             selectInput(
               inputId = paste0("defender_unit_", defending_unit_count()),
               label = "Type",
@@ -152,6 +155,7 @@ server <- function(input, output, session) {
             )
           ),
           column(3,
+            style = "padding-left:5px;",    # reduce left padding
             numericInput(
               inputId = paste0("defender_counter_", defending_unit_count()),
               label = "Count",
