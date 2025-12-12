@@ -13,7 +13,9 @@ library(reticulate) # Runing Python Code
 library(readr) # Read CSV
 library(DT) # Table Renders
 library(dplyr) # DataFrame manipulaitons
+library(tidyr) # DataFrame manipulaitons
 library(binom) # Confidence Intervals
+library(ggplot2) # Plots
 
 # If Running Locally:
 # setwd("TwilightImperiumBattleSimulator")
@@ -43,7 +45,7 @@ ui <- navbarPage("Twilight Imperium",
           div(
             h3(" ")
           ),
-          sliderInput("rounds", "Battles to Simulate", 100, 10000, 500, step = 100, ticks = FALSE),
+          sliderInput("rounds", "Battles to Simulate", 100, 2000, 500, step = 100, ticks = FALSE),
           checkboxInput("show_faction_specific", "Show Faction Specific Units", FALSE),
           hr(),
           h4("Attacker's Units"),
@@ -61,13 +63,11 @@ ui <- navbarPage("Twilight Imperium",
           uiOutput("defending_unit_selection")
         ),
         column(8,
-          column(6,
-            DTOutput("results")
-          ),
-          column(6,
-            DTOutput("metadata"),
-            DTOutput("ci")
-          ),
+          plotOutput("donut_chart"),
+          br(),
+          DTOutput("metadata"),
+          br(),
+          DTOutput("ci"),
           br(),
           DTOutput("attacker_stats"),
           br(),
@@ -85,12 +85,18 @@ ui <- navbarPage("Twilight Imperium",
       )
     )
   ),
-  tabPanel("info",
+  tabPanel("Info",
     fluidPage(
       fluidRow(
         column(12,
           h3("Data:"),
-          h4("https://twilight-imperium.fandom.com/wiki/Twilight_Imperium_Wiki"),
+          h4(
+            tags$a(
+              href = "https://twilight-imperium.fandom.com/wiki/Twilight_Imperium_Wiki",
+              "Twilight Imperium Wiki",
+              target = "_blank"   # open link in new tab
+            )
+          ),
           h3("Created by:"),
           h4("Kyle Maher")
         )
@@ -103,6 +109,18 @@ ui <- navbarPage("Twilight Imperium",
 server <- function(input, output, session) {
 
   # Functions
+  format_table_output <- function(table, table_name) {
+    formatted_table <- datatable(
+      table,
+      rownames = FALSE,
+      options = list(dom = "t"),
+      caption = htmltools::tags$caption(
+        style = 'caption-side: top; text-align: left; font-weight: bold; font-size: 16px;',
+        table_name
+      )
+    )
+    return(formatted_table)
+  }
 
   add_attacker <- function() {
     attacking_unit_count(attacking_unit_count() + 1)
@@ -113,7 +131,8 @@ server <- function(input, output, session) {
       where = "beforeBegin",
       ui = div(class = "attacker_input",
         fluidRow(
-          column(7,
+          column(5,
+            style = "padding-right:5px;",   # reduce right padding
             selectInput(
               inputId = paste0("attacker_unit_", attacking_unit_count()),
               label = "Type",
@@ -121,14 +140,16 @@ server <- function(input, output, session) {
               selected = default_unit
             )
           ),
-          column(3,
+          column(2,
+            style = "padding-left:5px;",    # reduce left padding
             numericInput(
               inputId = paste0("attacker_counter_", attacking_unit_count()),
               label = "Count",
               value = 1,
               min = 1
             )
-          )
+          ),
+          column(3), # Spacer
         )
       )
     )
@@ -143,7 +164,8 @@ server <- function(input, output, session) {
       where = "beforeBegin",
       ui = div(class = "defender_input",
         fluidRow(
-          column(7,
+          column(5,
+            style = "padding-right:5px;",   # reduce right padding
             selectInput(
               inputId = paste0("defender_unit_", defending_unit_count()),
               label = "Type",
@@ -151,14 +173,16 @@ server <- function(input, output, session) {
               selected = default_unit
             )
           ),
-          column(3,
+          column(2,
+            style = "padding-left:5px;",    # reduce left padding
             numericInput(
               inputId = paste0("defender_counter_", defending_unit_count()),
               label = "Count",
               value = 1,
               min = 1
             )
-          )
+          ),
+          column(3), # Spacer
         )
       )
     )
@@ -280,79 +304,180 @@ server <- function(input, output, session) {
     # Call simulate_battles() from simulate.py
     sim <- simulate_battles(attacker_units_dict, defender_units_dict, input$rounds)
 
-    results <- sim[[1]]
-    metadata <- sim[[2]]
+    results <- sim[[1]] %>%
+      mutate(
+        "Combat Type" = c("Space", "Ground", "Overall")
+      ) %>%
+      select(
+        "Combat Type",
+        "Attacker Wins",
+        "Defender Wins",
+        "Draw"
+      )
+
+    metadata <- sim[[2]] %>%
+      mutate(
+        "Combat Type" = c("Space", "Ground")
+      ) %>%
+      select(
+        "Combat Type",
+        "Attacker Wins",
+        "Defender Wins",
+        "Draws",
+        "Average Rounds",
+        "Combats Simulated"
+      )
+
     attacker_stats <- sim[[3]] %>%
       select(-Has_Anti_Fighter, -Has_Bombardment, -Has_Space_Cannon) %>%
-      select(where(~ !all(.x == 0)))  # Remove Columns will all zeros
+      select(where(~ !all(.x == 0))) %>%  # Remove Columns will all zeros
+      rename(
+        "Combat Value" = "Unit_Combat_Value",
+        "Type" = "Unit_Type"
+      )
     defender_stats <- sim[[4]] %>%
       select(-Has_Anti_Fighter, -Has_Bombardment, -Has_Space_Cannon) %>%
-      select(where(~ !all(.x == 0)))  # Remove Columns will all zeros
+      select(where(~ !all(.x == 0))) %>%  # Remove Columns will all zeros
+      rename(
+        "Combat Value" = "Unit_Combat_Value",
+        "Type" = "Unit_Type"
+      )
 
-    output$results <- renderDT(results, options = list(dom = "t"))
-    output$metadata <- renderDT(metadata, options = list(dom = "t"))
-    output$attacker_stats <- renderDT(attacker_stats, options = list(dom = "t"))
-    output$defender_stats <- renderDT(defender_stats, options = list(dom = "t"))
+    output$metadata <- renderDT(format_table_output(metadata, "Battles Simulated:"))
+    output$attacker_stats <- renderDT(format_table_output(attacker_stats, "Attacker Unit Stats:"))
+    output$defender_stats <- renderDT(format_table_output(defender_stats, "Defender Unit Stats:"))
 
     # Compute Confidence Intervals
 
-  # Bonferroni-adjusted Confidence Level
-  alpha <- 0.05 / 3
-  level = 1 - alpha
+    # Bonferroni-adjusted Confidence Level
+    alpha <- 0.05 / 3
+    level = 1 - alpha
 
-  # Wilson Confidence Interval Bounds
-  get_wilson_ci <- function(k, n, conf.level = level) {
-    ci <- binom.confint(k, n, conf.level = level, methods = "wilson")
-    return(c(lower = ci$lower, upper = ci$upper))
-  }
+    # Wilson Confidence Interval Bounds
+    get_wilson_ci <- function(k, n, conf.level = level) {
+      ci <- binom.confint(k, n, conf.level = level, methods = "wilson")
+      return(c(lower = ci$lower, upper = ci$upper))
+    }
 
-  metadata_ci <- metadata %>%
-    rename(
-      "Attacker_Wins" = "Attacker Wins",
-      "Defender_Wins" = "Defender Wins",
-      "Combats_Simulated" = "Combats Simulated"
-    ) %>%
-    rowwise() %>%
-    mutate(
-      ci_attacker = list(get_wilson_ci(Attacker_Wins, Combats_Simulated)),
-      lwr_attacker = ci_attacker[["lower"]],
-      upr_attacker = ci_attacker[["upper"]],
-      
-      ci_defender = list(get_wilson_ci(Defender_Wins, Combats_Simulated)),
-      lwr_defender = ci_defender[["lower"]],
-      upr_defender = ci_defender[["upper"]],
-      
-      ci_draw = list(get_wilson_ci(Draws, Combats_Simulated)),
-      lwr_draw = ci_draw[["lower"]],
-      upr_draw = ci_draw[["upper"]]
-    ) %>%
-    ungroup() %>%
-    select(Combats_Simulated,
-          lwr_attacker, upr_attacker,
-          lwr_defender, upr_defender,
-          lwr_draw, upr_draw) %>%
-    round(2)
+    metadata_ci <- metadata %>%
+      rename(
+        "Attacker_Wins" = "Attacker Wins",
+        "Defender_Wins" = "Defender Wins",
+        "Combats_Simulated" = "Combats Simulated"
+      ) %>%
+      rowwise() %>%
+      mutate(
+        ci_attacker = list(get_wilson_ci(Attacker_Wins, Combats_Simulated)),
+        lwr_attacker = ci_attacker[["lower"]],
+        upr_attacker = ci_attacker[["upper"]],
+        
+        ci_defender = list(get_wilson_ci(Defender_Wins, Combats_Simulated)),
+        lwr_defender = ci_defender[["lower"]],
+        upr_defender = ci_defender[["upper"]],
+        
+        ci_draw = list(get_wilson_ci(Draws, Combats_Simulated)),
+        lwr_draw = ci_draw[["lower"]],
+        upr_draw = ci_draw[["upper"]]
+      ) %>%
+      ungroup() %>%
+      select(Combats_Simulated,
+            lwr_attacker, upr_attacker,
+            lwr_defender, upr_defender,
+            lwr_draw, upr_draw) %>%
+      round(2)
 
-  ci <- metadata_ci %>%
-    mutate(
-      "Combat Type" = c("Space", "Ground")
-    ) %>%
-    rowwise() %>%
-    mutate(
-      "Attacker CI" = paste(lwr_attacker, "-", upr_attacker),
-      "Defender CI" = paste(lwr_defender, "-", upr_defender),
-      "Draw CI" = paste(lwr_draw, "-", upr_draw),
-    ) %>%
-    select(
-      "Combat Type",
-      "Attacker CI",
-      "Defender CI",
-      "Draw CI"
+    ci <- metadata_ci %>%
+      mutate(
+        "Combat Type" = c("Space", "Ground")
+      ) %>%
+      rowwise() %>%
+      mutate(
+        "Attacker 95% CI" = paste(lwr_attacker, "-", upr_attacker),
+        "Defender 95% CI" = paste(lwr_defender, "-", upr_defender),
+        "Draw 95% CI" = paste(lwr_draw, "-", upr_draw),
+      ) %>%
+      select(
+        "Combat Type",
+        "Attacker 95% CI",
+        "Defender 95% CI",
+        "Draw 95% CI"
+      )
+
+    output$ci <- renderDT({format_table_output(ci, "Confidence Intervals:")})
+
+    # Plot Outputs
+    results_long <- results %>%
+      mutate("Combat Type" = c("Space", "Ground", "Overall")) %>%
+      pivot_longer(
+        cols = c("Attacker Wins", "Defender Wins", "Draw"),
+        names_to = "Battle Result",
+        values_to = "Percentage"
+      ) %>%
+      mutate("Combat Type" = factor(
+        `Combat Type`,
+        levels = c("Space", "Ground", "Overall")
+      ))
+
+
+    # Custom colors (match button colors)
+    colors <- c(
+      "Attacker Wins" = "#1f77b4",
+      "Defender Wins" = "#d62728",
+      "Draw"          = "#7f7f7f"
     )
-  output$ci <- renderDT(ci, options = list(dom = "t"))
 
+    plot_data <- results_long %>%
+      group_by(`Combat Type`) %>%
+      mutate(
+        Fraction = Percentage / sum(Percentage),
+        ymax = cumsum(Fraction),
+        ymin = c(0, head(ymax, n = -1)),
+        label_pos = (ymin + ymax) / 2,
+        label = paste0(Percentage, "%")
+      )
+
+    output$donut_chart <- renderPlot({
+      ggplot(plot_data) +
+        geom_rect(
+          aes(
+            ymin = ymin,
+            ymax = ymax,
+            xmin = 3,
+            xmax = 4,
+            fill = `Battle Result`
+          )
+        ) +
+        # Percentage Labels
+        geom_text(
+          aes(
+            x = 3.5,
+            y = label_pos,
+            label = label
+          ),
+          size = 5.5,
+          color = "black"
+          # fontface = "bold"
+        ) +
+        scale_fill_manual(values = colors) +
+        coord_polar(theta = "y") +
+        xlim(c(1, 4)) +
+        theme_void() +
+        theme(
+          legend.title = element_blank(),
+          legend.text = element_text(size = 14),
+          legend.position = "right",
+          # Facet Wrap Label Size
+          strip.text = element_text(
+            size = 16,
+            face = "bold"
+          )
+        ) +
+        facet_wrap(~ `Combat Type`)
+    })
 
   })
+  # End Simulate Button Effects
+
 
 
   # Wiki Data Output
