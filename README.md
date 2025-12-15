@@ -3,6 +3,9 @@
 Fun challenges using the board game twilight imperium 4.0 to practice code.
 Published app: https://kylemaher.shinyapps.io/TIBS/
 
+(If receiving “An error has occurred” close the tab, re-open the link, and wait a few seconds. It should work the second
+time.)
+
 ## scrape.ipynb
 
 Utilizes BeautifulSoup from bs4 to scrape data from tables on the Twilight Imperium Wiki.
