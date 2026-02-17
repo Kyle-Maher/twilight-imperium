@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css';
+	import { base } from '$app/paths';
 
 	let { children } = $props();
 </script>
@@ -8,13 +9,13 @@
 	<nav class="border-b border-[var(--color-border)] bg-[var(--color-surface)]">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="flex items-center justify-between h-16">
-				<a href="/" class="flex items-center gap-3 no-underline">
+				<a href="{base}/" class="flex items-center gap-3 no-underline">
 					<span class="text-2xl font-extrabold tracking-wider text-[var(--color-accent)]" style="font-family: 'Orbitron', sans-serif;">TIBS</span>
 					<span class="hidden sm:inline text-sm text-[var(--color-text-muted)]">Twilight Imperium Battle Simulator</span>
 				</a>
 				<div class="flex gap-6">
-					<a href="/" class="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors no-underline">Simulator</a>
-					<a href="/wiki" class="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors no-underline">Wiki</a>
+					<a href="{base}/" class="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors no-underline">Simulator</a>
+					<a href="{base}/wiki" class="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors no-underline">Wiki</a>
 				</div>
 			</div>
 		</div>
