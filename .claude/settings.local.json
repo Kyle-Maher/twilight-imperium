@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(\"/c/msys64/ucrt64/bin/python.exe\" --version)",
+      "Bash(\"/c/Users/kyled/AppData/Local/Programs/Python/Python314/python.exe\" --version)"
+    ]
+  }
+}
