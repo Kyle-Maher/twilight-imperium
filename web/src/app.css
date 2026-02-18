@@ -4,13 +4,18 @@
 	--color-attacker: #ef4444;
 	--color-defender: #3b82f6;
 	--color-draw: #a855f7;
-	--color-bg: #0f172a;
-	--color-surface: #1e293b;
-	--color-surface-hover: #334155;
-	--color-border: #334155;
-	--color-text: #f1f5f9;
-	--color-text-muted: #94a3b8;
+	--color-bg: #06080f;
+	--color-surface: #0d1220;
+	--color-surface-2: #111827;
+	--color-surface-hover: #1a2540;
+	--color-border: #1e2d4a;
+	--color-border-bright: #2a4070;
+	--color-text: #e2e8f0;
+	--color-text-muted: #64748b;
 	--color-accent: #f59e0b;
+	--color-accent-glow: rgba(245, 158, 11, 0.3);
+	--color-attacker-glow: rgba(239, 68, 68, 0.25);
+	--color-defender-glow: rgba(59, 130, 246, 0.25);
 }
 
 html {
@@ -22,4 +27,142 @@ html {
 body {
 	margin: 0;
 	min-height: 100vh;
+	background:
+		radial-gradient(ellipse at 20% 50%, rgba(15, 30, 80, 0.4) 0%, transparent 60%),
+		radial-gradient(ellipse at 80% 20%, rgba(80, 15, 60, 0.3) 0%, transparent 50%),
+		radial-gradient(ellipse at 60% 80%, rgba(10, 40, 80, 0.3) 0%, transparent 50%),
+		var(--color-bg);
+	background-attachment: fixed;
+}
+
+/* Starfield effect via pseudo-element on body */
+body::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	background-image:
+		radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+		radial-gradient(1px 1px at 25% 35%, rgba(255,255,255,0.4) 0%, transparent 100%),
+		radial-gradient(1px 1px at 40% 60%, rgba(255,255,255,0.5) 0%, transparent 100%),
+		radial-gradient(1px 1px at 55% 10%, rgba(255,255,255,0.3) 0%, transparent 100%),
+		radial-gradient(1px 1px at 70% 75%, rgba(255,255,255,0.6) 0%, transparent 100%),
+		radial-gradient(1px 1px at 85% 45%, rgba(255,255,255,0.4) 0%, transparent 100%),
+		radial-gradient(1px 1px at 15% 80%, rgba(255,255,255,0.5) 0%, transparent 100%),
+		radial-gradient(1px 1px at 90% 20%, rgba(255,255,255,0.3) 0%, transparent 100%),
+		radial-gradient(1px 1px at 50% 90%, rgba(255,255,255,0.4) 0%, transparent 100%),
+		radial-gradient(1px 1px at 35% 5%, rgba(255,255,255,0.6) 0%, transparent 100%),
+		radial-gradient(1px 1px at 75% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+		radial-gradient(1px 1px at 5% 50%, rgba(255,255,255,0.5) 0%, transparent 100%),
+		radial-gradient(1.5px 1.5px at 60% 30%, rgba(255,255,255,0.7) 0%, transparent 100%),
+		radial-gradient(1.5px 1.5px at 20% 65%, rgba(255,255,255,0.5) 0%, transparent 100%),
+		radial-gradient(2px 2px at 45% 45%, rgba(200,220,255,0.8) 0%, transparent 100%),
+		radial-gradient(1px 1px at 95% 85%, rgba(255,255,255,0.4) 0%, transparent 100%),
+		radial-gradient(1px 1px at 30% 95%, rgba(255,255,255,0.3) 0%, transparent 100%),
+		radial-gradient(1px 1px at 80% 5%, rgba(255,255,255,0.6) 0%, transparent 100%);
+	pointer-events: none;
+	z-index: 0;
+}
+
+/* Glow utilities */
+.glow-accent {
+	box-shadow: 0 0 20px var(--color-accent-glow), 0 0 40px rgba(245, 158, 11, 0.1);
+}
+
+.glow-attacker {
+	box-shadow: 0 0 20px var(--color-attacker-glow);
+}
+
+.glow-defender {
+	box-shadow: 0 0 20px var(--color-defender-glow);
+}
+
+/* Panel chrome look */
+.panel {
+	background: linear-gradient(135deg, var(--color-surface) 0%, rgba(13, 18, 32, 0.95) 100%);
+	border: 1px solid var(--color-border);
+	border-radius: 12px;
+	position: relative;
+	overflow: hidden;
+}
+
+.panel::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 50%);
+	pointer-events: none;
+}
+
+/* Unit card styles */
+.unit-card {
+	background: var(--color-surface-2);
+	border: 1px solid var(--color-border);
+	border-radius: 10px;
+	transition: all 0.2s ease;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+}
+
+.unit-card:hover {
+	border-color: var(--color-border-bright);
+	transform: translateY(-1px);
+}
+
+.unit-card.selected-attacker {
+	border-color: #ef4444;
+	box-shadow: 0 0 12px rgba(239, 68, 68, 0.3);
+}
+
+.unit-card.selected-defender {
+	border-color: #3b82f6;
+	box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Hexagonal stat badge */
+.stat-badge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(255,255,255,0.05);
+	border: 1px solid rgba(255,255,255,0.1);
+	border-radius: 6px;
+	padding: 2px 6px;
+	font-size: 11px;
+	font-weight: 600;
+	font-family: 'Courier New', monospace;
+}
+
+/* Orbitron font for headings */
+.font-orbitron {
+	font-family: 'Orbitron', sans-serif;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--color-border-bright);
+	border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--color-text-muted);
+}
+
+/* Combat VS divider animation */
+@keyframes pulse-glow {
+	0%, 100% { opacity: 0.7; text-shadow: 0 0 10px #f59e0b; }
+	50% { opacity: 1; text-shadow: 0 0 30px #f59e0b, 0 0 60px #f59e0b; }
+}
+
+.vs-text {
+	animation: pulse-glow 2s ease-in-out infinite;
 }
