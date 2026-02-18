@@ -6,7 +6,7 @@
 	let attackerUnits = $state<{ name: string; count: number }[]>([]);
 	let defenderUnits = $state<{ name: string; count: number }[]>([]);
 	let showFactionUnits = $state(false);
-	let rounds = $state(500);
+	let rounds = $state(50000);
 	let results = $state<SimulationResults | null>(null);
 	let isSimulating = $state(false);
 
@@ -72,12 +72,12 @@
 						id="rounds"
 						type="range"
 						bind:value={rounds}
-						min="100"
-						max="2000"
-						step="100"
+						min="1000"
+						max="100000"
+						step="1000"
 						class="w-32 accent-[var(--color-accent)] cursor-pointer"
 					/>
-					<span class="text-sm font-mono text-[var(--color-text)] w-12">{rounds}</span>
+					<span class="text-sm font-mono text-[var(--color-text)] w-16">{rounds.toLocaleString()}</span>
 				</div>
 			</div>
 
