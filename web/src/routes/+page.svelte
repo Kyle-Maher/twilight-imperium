@@ -3,8 +3,20 @@
 	import ResultsDisplay from '$lib/components/ResultsDisplay.svelte';
 	import { simulateBattles, type SimulationResults } from '$lib/simulation/simulate';
 
-	let attackerUnits = $state<{ name: string; count: number }[]>([]);
-	let defenderUnits = $state<{ name: string; count: number }[]>([]);
+	let attackerUnits = $state<{ name: string; count: number }[]>([
+		{ name: 'Dreadnought II', count: 1 },
+		{ name: 'Carrier', count: 1 },
+		{ name: 'Fighter', count: 1 },
+		{ name: 'Mech', count: 1 },
+		{ name: 'Infantry', count: 1 },
+	]);
+	let defenderUnits = $state<{ name: string; count: number }[]>([
+		{ name: 'Cruiser', count: 1 },
+		{ name: 'Destroyer II', count: 1 },
+		{ name: 'Fighter', count: 1 },
+		{ name: 'Mech', count: 1 },
+		{ name: 'Infantry', count: 1 },
+	]);
 	let showFactionUnits = $state(false);
 	let rounds = $state(50000);
 	let results = $state<SimulationResults | null>(null);
