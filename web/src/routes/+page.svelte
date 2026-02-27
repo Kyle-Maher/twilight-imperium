@@ -1,7 +1,7 @@
 <script lang="ts">
 	import UnitPanel from '$lib/components/UnitPanel.svelte';
 	import ResultsDisplay from '$lib/components/ResultsDisplay.svelte';
-	import { simulateBattles, type SimulationResults } from '$lib/simulation/simulate';
+	import type { SimulationResults } from '$lib/simulation/simulate';
 
 	let attackerUnits = $state<{ name: string; count: number }[]>([
 		{ name: 'Dreadnought II', count: 1 },
@@ -21,33 +21,63 @@
 	let rounds = $state(50000);
 	let results = $state<SimulationResults | null>(null);
 	let isSimulating = $state(false);
+	let simulationError = $state<string | null>(null);
+	let worker = $state<Worker | null>(null);
 
 	function simulate() {
 		if (attackerUnits.length === 0 || defenderUnits.length === 0) return;
 
 		isSimulating = true;
+		simulationError = null;
 
-		// Use setTimeout to allow the UI to update with loading state
-		setTimeout(() => {
-			const attackerDict: Record<string, number> = {};
-			for (const u of attackerUnits) {
-				attackerDict[u.name] = (attackerDict[u.name] || 0) + u.count;
-			}
+		const attackerDict: Record<string, number> = {};
+		for (const u of attackerUnits) {
+			attackerDict[u.name] = (attackerDict[u.name] || 0) + u.count;
+		}
 
-			const defenderDict: Record<string, number> = {};
-			for (const u of defenderUnits) {
-				defenderDict[u.name] = (defenderDict[u.name] || 0) + u.count;
-			}
+		const defenderDict: Record<string, number> = {};
+		for (const u of defenderUnits) {
+			defenderDict[u.name] = (defenderDict[u.name] || 0) + u.count;
+		}
 
-			results = simulateBattles(attackerDict, defenderDict, rounds);
+		const w = new Worker(new URL('../lib/simulation/simulate.worker.ts', import.meta.url), { type: 'module' });
+		worker = w;
+
+		const warningTimer = setTimeout(() => {
+			if (isSimulating) simulationError = 'Simulation is taking a while. Try cancelling and reducing the number of rounds or units.';
+		}, 10000);
+
+		w.onmessage = (e) => {
+			clearTimeout(warningTimer);
+			worker = null;
 			isSimulating = false;
-		}, 10);
+			if (e.data.type === 'result') {
+				results = e.data.data;
+				simulationError = null;
+			} else {
+				simulationError = e.data.message;
+			}
+		};
+
+		w.onerror = () => {
+			clearTimeout(warningTimer);
+			worker = null;
+			isSimulating = false;
+			simulationError = 'Simulation failed.';
+		};
+
+		w.postMessage({ attackerUnits: attackerDict, defenderUnits: defenderDict, rounds });
+	}
+
+	function cancelSimulation() {
+		worker?.terminate();
+		worker = null;
+		isSimulating = false;
+		simulationError = null;
 	}
 
 	function reset() {
-		attackerUnits = [];
-		defenderUnits = [];
-		results = null;
+		window.location.reload();
 	}
 </script>
 
@@ -100,21 +130,33 @@
 				>
 					Reset
 				</button>
-				<button
-					onclick={simulate}
-					disabled={attackerUnits.length === 0 || defenderUnits.length === 0 || isSimulating}
-					class="px-6 py-2 rounded-lg text-sm font-bold text-[var(--color-bg)] transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
-					style="background: linear-gradient(135deg, var(--color-accent), #d97706); box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);"
-				>
-					{#if isSimulating}
-						Simulating...
-					{:else}
-						Simulate Battle
-					{/if}
-				</button>
+				{#if isSimulating}
+					<button
+						onclick={cancelSimulation}
+						class="w-40 py-2 rounded-lg text-sm font-bold text-white bg-red-700 hover:bg-red-600 transition-colors cursor-pointer"
+					>
+						Cancel
+					</button>
+				{:else}
+					<button
+						onclick={simulate}
+						disabled={attackerUnits.length === 0 || defenderUnits.length === 0}
+						class="w-40 py-2 rounded-lg text-sm font-bold text-[var(--color-bg)] transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+						style="background: linear-gradient(135deg, var(--color-accent), #d97706); box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);"
+					>
+						Simulate Battles
+					</button>
+				{/if}
 			</div>
 		</div>
 	</div>
+
+	<!-- Simulation Warning -->
+	{#if simulationError}
+		<div class="rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 mb-6 text-sm text-amber-400">
+			{simulationError}
+		</div>
+	{/if}
 
 	<!-- Unit Panels -->
 	<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
@@ -135,7 +177,11 @@
 	</div>
 
 	<!-- Results -->
-	{#if results}
+	{#if isSimulating}
+		<div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-12 text-center animate-pulse">
+			<p class="text-[var(--color-text-muted)] text-lg">Running simulation…</p>
+		</div>
+	{:else if results}
 		<ResultsDisplay {results} />
 	{:else}
 		<div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-12 text-center">
