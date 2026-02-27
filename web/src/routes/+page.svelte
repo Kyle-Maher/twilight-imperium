@@ -92,7 +92,7 @@
 			<span class="text-[var(--color-accent)]">Battle</span>
 			<span class="text-[var(--color-text)]"> Simulator</span>
 		</h1>
-		<p class="text-[var(--color-text-muted)]">Monte Carlo simulation for Twilight Imperium 4 combat</p>
+		<p class="text-[var(--color-text-muted)]">Simulate Twilight Imperium Fourth Edition Combat</p>
 	</div>
 
 	<!-- Controls Bar -->

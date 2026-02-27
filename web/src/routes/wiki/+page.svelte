@@ -70,7 +70,7 @@
 			<span class="text-[var(--color-accent)]">Unit</span>
 			<span class="text-[var(--color-text)]"> Database</span>
 		</h1>
-		<p class="text-[var(--color-text-muted)]">Browse all {unitList.length} units from Twilight Imperium 4</p>
+		<p class="text-[var(--color-text-muted)]">Browse all {unitList.length} units from Twilight Imperium Fourth Edition</p>
 	</div>
 
 	<!-- Filters -->
