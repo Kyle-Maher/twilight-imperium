@@ -32,8 +32,8 @@
 		}
 
 		list = [...list].sort((a, b) => {
-			const aVal = a[sortColumn as keyof typeof a];
-			const bVal = b[sortColumn as keyof typeof b];
+			const aVal = sortColumn === 'unit_category' ? getUnitCategory(a) : a[sortColumn as keyof typeof a];
+			const bVal = sortColumn === 'unit_category' ? getUnitCategory(b) : b[sortColumn as keyof typeof b];
 			if (typeof aVal === 'number' && typeof bVal === 'number') {
 				return sortAsc ? aVal - bVal : bVal - aVal;
 			}
@@ -58,6 +58,12 @@
 		if (sortColumn !== col) return '';
 		return sortAsc ? ' \u25B2' : ' \u25BC';
 	}
+
+	function getUnitCategory(unit: (typeof unitList)[number]): string {
+		if (unit.Is_Ship) return 'Space';
+		if (unit.Is_Ground_Force) return 'Ground';
+		return 'Structure';
+	}
 </script>
 
 <svelte:head>
@@ -70,7 +76,7 @@
 			<span class="text-[var(--color-accent)]">Unit</span>
 			<span class="text-[var(--color-text)]"> Database</span>
 		</h1>
-		<p class="text-[var(--color-text-muted)]">Browse all {unitList.length} units from Twilight Imperium 4</p>
+		<p class="text-[var(--color-text-muted)]">Browse all {unitList.length} units from Twilight Imperium Fourth Edition</p>
 	</div>
 
 	<!-- Filters -->
@@ -116,8 +122,7 @@
 							['Shots', 'Shots'],
 							['Has_Sustain_Damage', 'Sustain'],
 							['Cost', 'Cost'],
-							['Is_Ship', 'Ship'],
-							['Is_Ground_Force', 'Ground']
+							['unit_category', 'Unit Type']
 						] as [col, label]}
 							<th
 								class="px-3 py-3 text-left text-[var(--color-text-muted)] font-medium cursor-pointer hover:text-[var(--color-text)] transition-colors select-none whitespace-nowrap"
@@ -148,8 +153,7 @@
 								{/if}
 							</td>
 							<td class="px-3 py-2.5">{unit.Cost}</td>
-							<td class="px-3 py-2.5">{unit.Is_Ship ? 'Yes' : '-'}</td>
-							<td class="px-3 py-2.5">{unit.Is_Ground_Force ? 'Yes' : '-'}</td>
+							<td class="px-3 py-2.5">{getUnitCategory(unit)}</td>
 						</tr>
 					{/each}
 				</tbody>

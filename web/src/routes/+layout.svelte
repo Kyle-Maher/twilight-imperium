@@ -26,6 +26,6 @@
 	</main>
 
 	<footer class="border-t border-[var(--color-border)] py-4 text-center text-xs text-[var(--color-text-muted)]">
-		Created by Kyle Maher &middot; Twilight Imperium 4
+		Created by Kyle Maher &middot; Twilight Imperium Fourth Edition
 	</footer>
 </div>
